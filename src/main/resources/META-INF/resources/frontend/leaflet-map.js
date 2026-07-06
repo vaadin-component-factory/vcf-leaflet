@@ -23,14 +23,15 @@
  * Copyright 2020 Gabor Kokeny and contributors
  */
 
-import { html, PolymerElement } from "@polymer/polymer/polymer-element.js";
+import { html, LitElement } from "lit";
+import { PolylitMixin } from "@vaadin/component-base/src/polylit-mixin.js";
 import { ThemableMixin } from "@vaadin/vaadin-themable-mixin/vaadin-themable-mixin.js";
 import * as L from "leaflet/dist/leaflet-src.js";
 
 import { LeafletTypeConverter } from "./leaflet-type-converter.js";
 
-class LeafletMap extends ThemableMixin(PolymerElement) {
-  static get template() {
+class LeafletMap extends ThemableMixin(PolylitMixin(LitElement)) {
+  render() {
     return html`
       <div
         id="map"
@@ -71,15 +72,29 @@ class LeafletMap extends ThemableMixin(PolymerElement) {
    */
   ready() {
     super.ready();
-    console.info("LeafletMap - ready() leaflet map is ready.");
-    // console.log("LeafletMap - ready() mapOptions: {}", this.mapOptions);
+    // The server may not have synchronised the "mapOptions" property yet when
+    // this runs, so initialisation is deferred to _ensureMap(), which is also
+    // called lazily by callLeafletFunction()/afterServerUpdate().
+    this._ensureMap();
+  }
 
-    this.leafletConverter = new LeafletTypeConverter(L);
-    // console.log("LeafletMap - ready() using converter", this.leafletConverter);
-
-    // init leaflet map
-    let map = this.toLeafletMap(JSON.parse(this.mapOptions));
-    this.map = map;
+  /**
+   * Initialises the underlying Leaflet map on first use. This is called both
+   * from the ready() lifecycle callback and lazily from the RPC entry points
+   * so that map operations sent from the server never run before the map
+   * exists, regardless of the order in which the element is upgraded and its
+   * properties are synchronised.
+   */
+  _ensureMap() {
+    if (this.map || !this.mapOptions) {
+      return this.map;
+    }
+    console.info("LeafletMap - _ensureMap() initializing leaflet map.");
+    if (!this.leafletConverter) {
+      this.leafletConverter = new LeafletTypeConverter(L);
+    }
+    this.map = this.toLeafletMap(JSON.parse(this.mapOptions));
+    return this.map;
   }
 
   /**
@@ -91,6 +106,7 @@ class LeafletMap extends ThemableMixin(PolymerElement) {
       "LeafletMap - afterServerUpdate() mapOptions: {}",
       this.mapOptions
     );
+    this._ensureMap();
     if (!this.mapInitialized) {
       this.map.whenReady(() => {
         console.log("LeafletMap - whenReady()");
@@ -106,6 +122,7 @@ class LeafletMap extends ThemableMixin(PolymerElement) {
 
   callLeafletFunction(operation) {
     // console.info("LeafletMap - callLeafletFunction()", operation);
+    this._ensureMap();
 
     let target = this._findTargetLayer(operation);
 
@@ -183,7 +200,7 @@ class LeafletMap extends ThemableMixin(PolymerElement) {
     // console.log("LeafletMap - using DOM element: {}", mapElement);
     let leafletMap = L.map(mapElement, options);
     leafletMap._controls = [];
-    this.events
+    (this.events || [])
       .slice()
       .forEach((event) =>
         this.registerEventListener(leafletMap, event.leafletEvent)

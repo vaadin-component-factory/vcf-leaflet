@@ -29,7 +29,7 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeLabel;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.AfterNavigationEvent;
@@ -96,7 +96,7 @@ public class LeafletDemoApp extends AppLayout implements AfterNavigationObserver
 		addToNavbar(image);
 
 		// App title
-		Label appTitle = new Label("Vaadin - Leaflet examples");
+		NativeLabel appTitle = new NativeLabel("Vaadin - Leaflet examples");
 		appTitle.setWidthFull();
 		appTitle.getStyle().set("font-size", "20px");
 		appTitle.getStyle().set("margin-left", "10px");

@@ -14,7 +14,7 @@
 
 package org.vaadin.addons.componentfactory.leaflet.demo.view.marker;
 
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeLabel;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
@@ -30,12 +30,12 @@ import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 @Route(value = "marker/events", layout = LeafletDemoApp.class)
 public class MarkersEventsExample extends ExampleContainer {
 
-	private Label eventLabel;
+	private NativeLabel eventLabel;
 
 	@Override
 	protected void initDemo() {
 
-		eventLabel = new Label();
+		eventLabel = new NativeLabel();
 		eventLabel.getStyle().set("font-weight", "bold");
 
 		MapOptions options = new DefaultMapOptions();

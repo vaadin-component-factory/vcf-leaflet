@@ -4,7 +4,7 @@
 
 	<groupId>org.vaadin.addons.componentfactory</groupId>
 	<artifactId>vcf-leaflet</artifactId>
-	<version>24.0.2</version>
+	<version>3.0.0</version>
 	<name>Leaflet</name>
 	<description>Integration of Leaflet Map for Vaadin Flow</description>
 	<scm>
@@ -13,16 +13,16 @@
 		<developerConnection>scm:git:git@https://github.com/vaadin-component-factory/vcf-leaflet.git</developerConnection>
 	</scm>
 	<properties>
-		<vaadin.version>24.5.2</vaadin.version>
+		<vaadin.version>25.2.1</vaadin.version>
 
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<drivers.dir>${project.basedir}/drivers</drivers.dir>
 
-		<jetty.version>11.0.14</jetty.version>
+		<jetty.version>12.1.2</jetty.version>
 
 		<maven-war-plugin.version>3.4.0</maven-war-plugin.version>
 	</properties>
@@ -116,7 +116,7 @@
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
 			<artifactId>jakarta.servlet-api</artifactId>
-			<version>6.0.0</version>
+			<version>6.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -131,6 +131,15 @@
 		<dependency>
 			<groupId>com.vaadin</groupId>
 			<artifactId>vaadin-testbench</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Provides dev mode tooling (Vite dev server, dev tools, Copilot).
+		     No longer a transitive dependency of vaadin/vaadin-core in Vaadin 25.
+		     Only needed to run the demo in development mode. -->
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-dev</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -172,8 +181,8 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
+				<groupId>org.eclipse.jetty.ee11</groupId>
+				<artifactId>jetty-ee11-maven-plugin</artifactId>
 				<version>${jetty.version}</version>
 				<configuration>
 					<scan>2</scan>
@@ -308,8 +317,8 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-maven-plugin</artifactId>
+						<groupId>org.eclipse.jetty.ee11</groupId>
+						<artifactId>jetty-ee11-maven-plugin</artifactId>
 						<version>${jetty.version}</version>
 						<configuration>
 							<scan>0</scan>

@@ -17,8 +17,6 @@ package org.vaadin.addons.componentfactory.leaflet.types;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang3.builder.ToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -184,7 +182,7 @@ public class LatLngBounds implements BasicType {
 
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this);
+        return getClass().getSimpleName() + "[southWest=" + southWest + ",northEast=" + northEast + "]";
     }
 
     /**

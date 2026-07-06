@@ -25,8 +25,8 @@
 package org.vaadin.addons.componentfactory.leaflet.operations;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import java.io.Serializable;
 import org.vaadin.addons.componentfactory.leaflet.controls.LeafletControl;
 import org.vaadin.addons.componentfactory.leaflet.layer.Identifiable;
@@ -47,15 +47,15 @@ public class LeafletOperation implements Serializable {
     private boolean controlOperation;
     private String functionName;
     private Serializable[] arguments;
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = JsonMapper.builder()
+            .changeDefaultPropertyInclusion(incl -> incl.withValueInclusion(Include.NON_NULL))
+            .build();
 
     public LeafletOperation(Identifiable target, String functionName, Serializable... arguments) {
         this.layerId = target.getUuid();
         this.functionName = functionName;
         this.arguments = arguments;
         this.controlOperation = target instanceof LeafletControl;
-
-        mapper.setSerializationInclusion(Include.NON_NULL);
     }
 
     /**
@@ -83,7 +83,7 @@ public class LeafletOperation implements Serializable {
     public String getArguments() {
         try {
             return mapper.writeValueAsString(arguments);
-        } catch (JsonProcessingException e) {
+        } catch (RuntimeException e) {
             throw new RuntimeException("Unable to convert arguments to JSON.", e);
         }
     }

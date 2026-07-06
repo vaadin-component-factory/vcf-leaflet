@@ -20,7 +20,7 @@ import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeLabel;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -48,7 +48,7 @@ public class AppMenuItem extends VerticalLayout {
     public void addTo(AppMenu appMenu) {
         layout.addClassName("app-menu-item-summary");
         layout.add(icon);
-        layout.add(new Label(title));
+        layout.add(new NativeLabel(title));
         if (badge != null) {
             layout.addClassName("has-new-feature");
             layout.add(badge);
