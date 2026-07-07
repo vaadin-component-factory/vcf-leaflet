@@ -128,12 +128,6 @@
 		    <scope>provided</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-testbench</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- Provides dev mode tooling (Vite dev server, dev tools, Copilot).
 		     No longer a transitive dependency of vaadin/vaadin-core in Vaadin 25.
 		     Only needed to run the demo in development mode. -->
