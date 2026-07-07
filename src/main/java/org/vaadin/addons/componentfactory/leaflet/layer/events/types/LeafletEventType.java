@@ -14,10 +14,23 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events.types;
 
+/**
+ * Common interface implemented by the enums that describe the different Leaflet event types.
+ */
 public interface LeafletEventType {
+    /**
+     * Returns the name of the corresponding Leaflet event.
+     *
+     * @return the Leaflet event name
+     */
     default String getLeafletEvent() {
         return name();
     }
 
+    /**
+     * Returns the name of this event type constant.
+     *
+     * @return the constant name
+     */
     String name();
 }

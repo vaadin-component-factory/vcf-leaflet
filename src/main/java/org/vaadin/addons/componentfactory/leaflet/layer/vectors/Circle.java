@@ -27,10 +27,23 @@ public class Circle extends CircleMarker {
      */
     private static final long serialVersionUID = -9214599807982996954L;
 
+    /**
+     * Instantiates a circle at the given geographical point using the default
+     * radius.
+     *
+     * @param latlng the geographical center of the circle
+     */
     public Circle(LatLng latlng) {
         super(latlng);
     }
 
+    /**
+     * Instantiates a circle at the given geographical point with the given
+     * radius in meters.
+     *
+     * @param latlng the geographical center of the circle
+     * @param radius the radius of the circle, in meters
+     */
     public Circle(LatLng latlng, double radius) {
         super(latlng, radius);
     }

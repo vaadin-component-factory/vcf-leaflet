@@ -17,5 +17,11 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 @Documented
 public @interface LeafletArgument {
+    /**
+     * The position of the annotated field in the client-side constructor
+     * argument list.
+     *
+     * @return the argument index
+     */
     int index() default 0;
 }

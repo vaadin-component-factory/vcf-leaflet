@@ -24,11 +24,25 @@ import org.vaadin.addons.componentfactory.leaflet.controls.LayersControl.LayerCo
 import org.vaadin.addons.componentfactory.leaflet.layer.Layer;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEvent;
 
+/**
+ * Base class for events fired by a {@link LayersControl} when a layer is added,
+ * removed or changed through the control.
+ */
 public abstract class LayersControlEvent extends LeafletEvent {
 
     private static final long serialVersionUID = -4047072025354646461L;
     private String name;
 
+    /**
+     * Creates a new layers control event.
+     *
+     * @param source the map on which the event originated
+     * @param fromClient {@code true} if the event originated from the client
+     *                   side, {@code false} otherwise
+     * @param layerId the id of the layer that was added, removed or changed
+     * @param type the type of the layers control event
+     * @param name the name of the layer that was added, removed or changed
+     */
     public LayersControlEvent(LeafletMap source, boolean fromClient, String layerId, LayerControlEventType type, String name) {
         super(source, fromClient, layerId, type);
         this.name = name;

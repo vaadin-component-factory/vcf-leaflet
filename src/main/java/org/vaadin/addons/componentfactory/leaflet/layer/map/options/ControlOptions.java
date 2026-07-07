@@ -27,6 +27,11 @@ import java.io.Serializable;
  */
 public interface ControlOptions extends Serializable {
 
+	/**
+	 * Returns whether the default attribution control is added to the map.
+	 *
+	 * @return {@code true} if the default attribution control is added to the map
+	 */
 	boolean isAttributionControl();
 
 	/**
@@ -37,6 +42,11 @@ public interface ControlOptions extends Serializable {
 	 */
 	void setAttributionControl(boolean attributionControl);
 
+	/**
+	 * Returns whether the default zoom control is added to the map.
+	 *
+	 * @return {@code true} if the default zoom control is added to the map
+	 */
 	boolean isZoomControl();
 
 	/**

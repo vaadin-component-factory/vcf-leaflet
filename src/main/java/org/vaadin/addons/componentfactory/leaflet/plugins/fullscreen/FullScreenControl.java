@@ -82,67 +82,150 @@ public class FullScreenControl extends LeafletControl {
     private boolean forcePseudoFullscreen = false;
     private boolean fullscreenElement = false;
 
+    /**
+     * The event types fired by the fullscreen control when the map enters or exits
+     * fullscreen mode.
+     */
     public static enum FullScreenEventType implements LeafletEventType {
-        enterFullscreen, exitFullscreen;
+        /** Fired when the map enters fullscreen mode. */
+        enterFullscreen,
+        /** Fired when the map exits fullscreen mode. */
+        exitFullscreen;
 
         static {
             EventTypeRegistry.register(FullScreenEventType.class);
         }
     }
 
+    /**
+     * Creates a new fullscreen control positioned in the top-left corner of the
+     * map.
+     */
     public FullScreenControl() {
         super("fullscreen");
         setPosition(ControlPosition.topleft);
     }
 
+    /**
+     * Gets the title (tooltip) of the button shown while not in fullscreen.
+     *
+     * @return the title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Sets the title (tooltip) of the button shown while not in fullscreen.
+     *
+     * @param title the title to set
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * Gets the title (tooltip) of the button shown while in fullscreen.
+     *
+     * @return the titleCancel
+     */
     public String getTitleCancel() {
         return titleCancel;
     }
 
+    /**
+     * Sets the title (tooltip) of the button shown while in fullscreen.
+     *
+     * @param titleCancel the titleCancel to set
+     */
     public void setTitleCancel(String titleCancel) {
         this.titleCancel = titleCancel;
     }
 
+    /**
+     * Gets the content of the button, which may be HTML.
+     *
+     * @return the content
+     */
     public String getContent() {
         return content;
     }
 
+    /**
+     * Sets the content of the button, which may be HTML.
+     *
+     * @param content the content to set
+     */
     public void setContent(String content) {
         this.content = content;
     }
 
+    /**
+     * Gets whether the fullscreen button is forced to detach from the zoom
+     * buttons.
+     *
+     * @return the forceSeparateButton
+     */
     public boolean isForceSeparateButton() {
         return forceSeparateButton;
     }
 
+    /**
+     * Sets whether the fullscreen button is forced to detach from the zoom
+     * buttons.
+     *
+     * @param forceSeparateButton the forceSeparateButton to set
+     */
     public void setForceSeparateButton(boolean forceSeparateButton) {
         this.forceSeparateButton = forceSeparateButton;
     }
 
+    /**
+     * Gets whether pseudo fullscreen is used even when the browser fullscreen API
+     * is available.
+     *
+     * @return the forcePseudoFullscreen
+     */
     public boolean isForcePseudoFullscreen() {
         return forcePseudoFullscreen;
     }
 
+    /**
+     * Sets whether pseudo fullscreen is used even when the browser fullscreen API
+     * is available.
+     *
+     * @param forcePseudoFullscreen the forcePseudoFullscreen to set
+     */
     public void setForcePseudoFullscreen(boolean forcePseudoFullscreen) {
         this.forcePseudoFullscreen = forcePseudoFullscreen;
     }
 
+    /**
+     * Gets whether a specific DOM element is rendered in fullscreen instead of the
+     * map container.
+     *
+     * @return the fullscreenElement
+     */
     public boolean isFullscreenElement() {
         return fullscreenElement;
     }
 
+    /**
+     * Sets whether a specific DOM element is rendered in fullscreen instead of the
+     * map container.
+     *
+     * @param fullscreenElement the fullscreenElement to set
+     */
     public void setFullscreenElement(boolean fullscreenElement) {
         this.fullscreenElement = fullscreenElement;
     }
 
+    /**
+     * Wraps the given map in an adapter exposing the fullscreen control API.
+     *
+     * @param leafletMap the map to wrap, not {@code null}
+     * @return a {@link WithFullScreenControl} adapter for the given map
+     */
     public static WithFullScreenControl wrap(LeafletMap leafletMap) {
         return new LeafletMapFullScreenAdapter(leafletMap);
     }

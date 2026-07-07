@@ -53,30 +53,73 @@ public class LayersControl extends LeafletControl {
 
     private final LayersControlOptions options;
 
+    /**
+     * The event types fired by the layers control.
+     */
     public static enum LayerControlEventType implements LeafletEventType {
-        baselayerchange, overlayadd, overlayremove, layeradd, layerremove;
+        /** Fired when the base layer is changed through the layers control. */
+        baselayerchange,
+        /** Fired when an overlay is selected through the layers control. */
+        overlayadd,
+        /** Fired when an overlay is deselected through the layers control. */
+        overlayremove,
+        /** Fired when a new layer is added to the map. */
+        layeradd,
+        /** Fired when a layer is removed from the map. */
+        layerremove;
 
         static {
             EventTypeRegistry.register(LayerControlEventType.class);
         }
     }
 
+    /**
+     * Creates a new layers control with empty base layers and overlays and
+     * default options.
+     */
     public LayersControl() {
         this(new LayersControlOptions());
     }
 
+    /**
+     * Creates a new layers control with empty base layers and overlays and the
+     * given options.
+     *
+     * @param options the options for the layers control
+     */
     public LayersControl(LayersControlOptions options) {
         this(new HashMap<>(), new HashMap<>(), options);
     }
 
+    /**
+     * Creates a new layers control with the given base layers and default
+     * options.
+     *
+     * @param baseLayers the base layers keyed by their display name
+     */
     public LayersControl(Map<String, Layer> baseLayers) {
         this(baseLayers, new HashMap<>(), new LayersControlOptions());
     }
 
+    /**
+     * Creates a new layers control with the given base layers and overlays and
+     * default options.
+     *
+     * @param baseLayers the base layers keyed by their display name
+     * @param overlays the overlays keyed by their display name
+     */
     public LayersControl(Map<String, Layer> baseLayers, Map<String, Layer> overlays) {
         this(baseLayers, overlays, new LayersControlOptions());
     }
 
+    /**
+     * Creates a new layers control with the given base layers, overlays and
+     * options.
+     *
+     * @param baseLayers the base layers keyed by their display name
+     * @param overlays the overlays keyed by their display name
+     * @param options the options for the layers control
+     */
     public LayersControl(Map<String, Layer> baseLayers, Map<String, Layer> overlays, LayersControlOptions options) {
         super("layers");
         this.baseLayers = baseLayers;
@@ -185,26 +228,60 @@ public class LayersControl extends LeafletControl {
         executeJs(this, "removeLayer", layer);
     }
 
+    /**
+     * Gets whether the control is initially collapsed into an icon.
+     *
+     * @return {@code true} if the control is collapsed, {@code false} otherwise
+     */
     public boolean isCollapsed() {
         return options.isCollapsed();
     }
 
+    /**
+     * Gets whether the z-index of the layers is set automatically based on
+     * their order in the control.
+     *
+     * @return {@code true} if the z-index is set automatically, {@code false}
+     *         otherwise
+     */
     public boolean isAutoZIndex() {
         return options.isAutoZIndex();
     }
 
+    /**
+     * Gets whether the base layers section is hidden when there is only a
+     * single base layer.
+     *
+     * @return {@code true} if a single base layer is hidden, {@code false}
+     *         otherwise
+     */
     public boolean isHideSingleBase() {
         return options.isHideSingleBase();
     }
 
+    /**
+     * Gets whether the layers are sorted by name in the control.
+     *
+     * @return {@code true} if the layers are sorted, {@code false} otherwise
+     */
     public boolean isSortLayers() {
         return options.isSortLayers();
     }
 
+    /**
+     * Gets the base layers of the control keyed by their display name.
+     *
+     * @return the base layers keyed by their display name
+     */
     public Map<String, Layer> getBaseLayers() {
         return baseLayers;
     }
 
+    /**
+     * Gets the overlays of the control keyed by their display name.
+     *
+     * @return the overlays keyed by their display name
+     */
     public Map<String, Layer> getOverlays() {
         return overlays;
     }

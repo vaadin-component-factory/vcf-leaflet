@@ -29,39 +29,93 @@ public class LatLng implements BasicType {
     private double lat;
     private double altitude;
 
+    /**
+     * Creates a new point at latitude and longitude zero.
+     */
     public LatLng() {
     }
 
+    /**
+     * Creates a new point with the given latitude and longitude.
+     *
+     * @param lat
+     *            the latitude in degrees
+     * @param lng
+     *            the longitude in degrees
+     */
     public LatLng(double lat, double lng) {
         this.lat = lat;
         this.lng = lng;
     }
 
+    /**
+     * Creates a new point with the given latitude, longitude and altitude.
+     *
+     * @param lat
+     *            the latitude in degrees
+     * @param lng
+     *            the longitude in degrees
+     * @param altitude
+     *            the altitude in meters
+     */
     public LatLng(double lat, double lng, double altitude) {
         this(lat, lng);
         this.altitude = altitude;
     }
 
+    /**
+     * Returns the longitude in degrees.
+     *
+     * @return the longitude
+     */
     public Double getLng() {
         return lng;
     }
 
+    /**
+     * Sets the longitude in degrees.
+     *
+     * @param lng
+     *            the longitude to set
+     */
     public void setLng(Double lng) {
         this.lng = lng;
     }
 
+    /**
+     * Returns the latitude in degrees.
+     *
+     * @return the latitude
+     */
     public Double getLat() {
         return lat;
     }
 
+    /**
+     * Sets the latitude in degrees.
+     *
+     * @param lat
+     *            the latitude to set
+     */
     public void setLat(Double lat) {
         this.lat = lat;
     }
 
+    /**
+     * Returns the altitude in meters.
+     *
+     * @return the altitude
+     */
     public double getAltitude() {
         return altitude;
     }
 
+    /**
+     * Sets the altitude in meters.
+     *
+     * @param altitude
+     *            the altitude to set
+     */
     public void setAltitude(double altitude) {
         this.altitude = altitude;
     }
@@ -71,10 +125,30 @@ public class LatLng implements BasicType {
         return lat + "," + lng;
     }
 
+    /**
+     * Creates a new point with the given latitude and longitude.
+     *
+     * @param lat
+     *            the latitude in degrees
+     * @param lng
+     *            the longitude in degrees
+     * @return a new point at the given coordinates
+     */
     public static LatLng latlng(double lat, double lng) {
         return new LatLng(lat, lng);
     }
 
+    /**
+     * Creates a new point with the given latitude, longitude and altitude.
+     *
+     * @param lat
+     *            the latitude in degrees
+     * @param lng
+     *            the longitude in degrees
+     * @param altitude
+     *            the altitude in meters
+     * @return a new point at the given coordinates
+     */
     public static LatLng latlng(double lat, double lng, double altitude) {
         return new LatLng(lat, lng, altitude);
     }

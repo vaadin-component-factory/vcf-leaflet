@@ -37,6 +37,8 @@ public class PanOptions implements Serializable {
     private boolean noMoveStart;
 
     /**
+     * Returns whether panning is animated.
+     *
      * @return the animate
      */
     public boolean isAnimate() {
@@ -56,6 +58,8 @@ public class PanOptions implements Serializable {
     }
 
     /**
+     * Returns the duration of the panning animation, in seconds.
+     *
      * @return the duration
      */
     public double getDuration() {
@@ -72,6 +76,8 @@ public class PanOptions implements Serializable {
     }
 
     /**
+     * Returns the curvature factor of the panning animation easing.
+     *
      * @return the easeLinearity
      */
     public double getEaseLinearity() {
@@ -90,6 +96,8 @@ public class PanOptions implements Serializable {
     }
 
     /**
+     * Returns whether panning suppresses the movestart event on start.
+     *
      * @return the noMoveStart
      */
     public boolean isNoMoveStart() {

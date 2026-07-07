@@ -29,12 +29,32 @@ import java.util.List;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.LeafletEventType;
 import org.vaadin.addons.componentfactory.leaflet.layer.map.options.MapOptions;
 
+/**
+ * State model of the {@link LeafletMap} component, holding the map options and
+ * the registered event types.
+ */
 public interface LeafletModel {
 
+	/**
+	 * Returns the current map options.
+	 *
+	 * @return the map options
+	 */
 	MapOptions getMapOptions();
 
+	/**
+	 * Sets the map options.
+	 *
+	 * @param mapOptions
+	 *            the map options to set
+	 */
 	void setMapOptions(MapOptions mapOptions);
 
+	/**
+	 * Returns the list of Leaflet event types registered on the map.
+	 *
+	 * @return the registered event types
+	 */
 	default List<LeafletEventType> getEvents() {
 		return new ArrayList<>();
 	}

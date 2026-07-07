@@ -147,30 +147,67 @@ public class HeatLayer extends Layer {
         executeJs("redraw");
     }
 
+    /**
+     * Returns the list of weighted points currently rendered by this heatmap.
+     *
+     * @return the heatmap points
+     * @see LatLng
+     */
     public List<LatLng> getLatLngs() {
         return latLngs;
     }
 
+    /**
+     * Returns the minimum opacity the heat will start at.
+     *
+     * @return the minimum opacity
+     */
     public double getMinOpacity() {
         return options.getMinOpacity();
     }
 
+    /**
+     * Returns the zoom level at which the points reach maximum intensity.
+     *
+     * @return the maximum zoom level
+     */
     public int getMaxZoom() {
         return options.getMaxZoom();
     }
 
+    /**
+     * Returns the maximum point intensity.
+     *
+     * @return the maximum point intensity
+     */
     public double getMax() {
         return options.getMax();
     }
 
+    /**
+     * Returns the radius of each point of the heatmap.
+     *
+     * @return the point radius
+     */
     public double getRadius() {
         return options.getRadius();
     }
 
+    /**
+     * Returns the amount of blur applied to the heatmap.
+     *
+     * @return the blur amount
+     */
     public double getBlur() {
         return options.getBlur();
     }
 
+    /**
+     * Returns the color gradient configuration mapping intensity ratios to
+     * colors.
+     *
+     * @return the color gradient configuration
+     */
     public Map<Double, String> getGradient() {
         return options.getGradient();
     }

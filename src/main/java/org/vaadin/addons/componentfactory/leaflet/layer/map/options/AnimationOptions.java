@@ -27,6 +27,11 @@ import java.io.Serializable;
  */
 public interface AnimationOptions extends Serializable {
 
+	/**
+	 * Returns whether the map zoom animation is enabled.
+	 *
+	 * @return {@code true} if the map zoom animation is enabled
+	 */
 	boolean isZoomAnimation();
 
 	/**
@@ -37,6 +42,11 @@ public interface AnimationOptions extends Serializable {
 	 */
 	void setZoomAnimation(boolean zoomAnimation);
 
+	/**
+	 * Returns the zoom difference above which zoom will not be animated.
+	 *
+	 * @return the maximum zoom difference that will still be animated
+	 */
 	double getZoomAnimationThreshold();
 
 	/**
@@ -46,6 +56,11 @@ public interface AnimationOptions extends Serializable {
 	 */
 	void setZoomAnimationThreshold(double zoomAnimationThreshold);
 
+	/**
+	 * Returns whether the tile fade animation is enabled.
+	 *
+	 * @return {@code true} if the tile fade animation is enabled
+	 */
 	boolean isFadeAnimation();
 
 	/**
@@ -56,6 +71,11 @@ public interface AnimationOptions extends Serializable {
 	 */
 	void setFadeAnimation(boolean fadeAnimation);
 
+	/**
+	 * Returns whether markers animate their zoom with the zoom animation.
+	 *
+	 * @return {@code true} if markers animate their zoom with the zoom animation
+	 */
 	boolean isMarkerZoomAnimation();
 
 	/**
@@ -68,6 +88,11 @@ public interface AnimationOptions extends Serializable {
 	 */
 	void setMarkerZoomAnimation(boolean markerZoomAnimation);
 
+	/**
+	 * Returns the maximum size of a CSS translation transform.
+	 *
+	 * @return the maximum size of a CSS translation transform
+	 */
 	double getTransform3DLimit();
 
 	/**

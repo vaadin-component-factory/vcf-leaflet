@@ -39,10 +39,20 @@ public class LayerGroup extends Layer implements LayerGroupFunctions {
 	@LeafletArgument
 	private List<Layer> layers = new ArrayList<>();
 
+	/**
+	 * Creates a layer group containing the given layers.
+	 *
+	 * @param layers the layers to add to this group
+	 */
 	public LayerGroup(Layer... layers) {
 		this(Arrays.asList(layers));
 	}
 
+	/**
+	 * Creates a layer group containing the given layers.
+	 *
+	 * @param layers the layers to add to this group
+	 */
 	public LayerGroup(List<Layer> layers) {
 		super();
 		this.layers = new ArrayList<>(layers);
@@ -69,28 +79,53 @@ public class LayerGroup extends Layer implements LayerGroupFunctions {
 		this.getLayers().add(layer);
 	}
 
+	/**
+	 * Removes the given layer from the group.
+	 *
+	 * @param layer the layer to remove
+	 */
 	@Override
 	public void removeLayer(Layer layer) {
 		LayerGroupFunctions.super.removeLayer(layer);
         getLayer(layer.getUuid()).ifPresent(l -> getLayers().remove(l));
 	}
 
+	/**
+	 * Removes the layer with the given internal ID from the group.
+	 *
+	 * @param layerId the internal ID of the layer to remove
+	 */
 	@Override
 	public void removeLayer(String layerId) {
 		LayerGroupFunctions.super.removeLayer(layerId);
 		getLayer(layerId).ifPresent(l -> getLayers().remove(l));
 	}
 
+	/**
+	 * Returns whether the given layer is currently in the group.
+	 *
+	 * @param layer the layer to check
+	 * @return {@code true} if the layer is in the group
+	 */
 	@Override
 	public boolean hasLayer(Layer layer) {
 		return hasLayer(layer.getUuid());
 	}
 
+	/**
+	 * Returns whether a layer with the given internal ID is currently in the group.
+	 *
+	 * @param layerId the internal ID of the layer to check
+	 * @return {@code true} if a matching layer is in the group
+	 */
 	@Override
 	public boolean hasLayer(String layerId) {
 		return getLayer(layerId).isPresent();
 	}
 
+	/**
+	 * Removes all layers from the group.
+	 */
 	@Override
 	public void clearLayers() {
 		LayerGroupFunctions.super.clearLayers();
@@ -132,6 +167,13 @@ public class LayerGroup extends Layer implements LayerGroupFunctions {
 		return this.layers.stream().filter(layer -> layer.getUuid().equals(layerId)).findFirst();
 	}
 
+	/**
+	 * Recursively searches this group and any nested layer groups for the layer
+	 * with the given internal ID.
+	 *
+	 * @param layerId the internal ID of the layer to find
+	 * @return the matching layer, or an empty optional if none is found
+	 */
 	public Optional<Layer> findLayer(String layerId) {
 		Optional<Layer> result = Optional.empty();
 		if (this.getUuid().equals(layerId)) {

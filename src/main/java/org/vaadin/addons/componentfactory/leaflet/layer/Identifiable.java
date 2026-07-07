@@ -15,6 +15,8 @@
 package org.vaadin.addons.componentfactory.leaflet.layer;
 
 /**
+ * Common interface for objects that can be uniquely identified by a UUID.
+ *
  * @author <strong>Gabor Kokeny</strong> Email:
  *         <a href='mailto=kokeny19@gmail.com'>kokeny19@gmail.com</a>
  * @since 2020-03-12
@@ -22,5 +24,10 @@ package org.vaadin.addons.componentfactory.leaflet.layer;
  */
 public interface Identifiable {
 
+    /**
+     * Returns the unique identifier of this object.
+     *
+     * @return the UUID of this object
+     */
     String getUuid();
 }

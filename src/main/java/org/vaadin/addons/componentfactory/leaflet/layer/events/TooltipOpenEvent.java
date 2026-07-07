@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.TooltipEventType;
 
+/**
+ * Event fired when a tooltip bound to a layer is opened.
+ */
 @DomEvent("tooltipopen")
 public class TooltipOpenEvent extends TooltipEvent {
 
   private static final long serialVersionUID = -2970239803057635578L;
 
+  /**
+   * Creates a new tooltip open event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer the tooltip is bound to
+   */
   public TooltipOpenEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, TooltipEventType.tooltipopen, null);

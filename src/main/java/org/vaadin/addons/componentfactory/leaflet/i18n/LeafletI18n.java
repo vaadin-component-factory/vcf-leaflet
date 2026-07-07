@@ -27,6 +27,10 @@ import com.vaadin.flow.internal.JacksonUtils;
 
 import tools.jackson.databind.JsonNode;
 
+/**
+ * Internationalization object holding the localized UI texts used by the
+ * Leaflet component.
+ */
 public class LeafletI18n implements Serializable {
 
     /**
@@ -45,6 +49,8 @@ public class LeafletI18n implements Serializable {
     }
 
     /**
+     * Creates a new instance populated with the default localized messages.
+     *
      * @return a new instance with the default messages
      */
     public static LeafletI18n createDefault() {

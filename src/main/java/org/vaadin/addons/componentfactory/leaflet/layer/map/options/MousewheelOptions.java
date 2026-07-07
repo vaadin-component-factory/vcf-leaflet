@@ -27,6 +27,11 @@ import java.io.Serializable;
  */
 public interface MousewheelOptions extends Serializable {
 
+    /**
+     * Returns whether the map can be zoomed by using the mouse wheel.
+     *
+     * @return {@code true} if mouse wheel zoom is enabled
+     */
     boolean isScrollWheelZoom();
 
     /**
@@ -37,6 +42,11 @@ public interface MousewheelOptions extends Serializable {
      */
     void setScrollWheelZoom(boolean scrollWheelZoom);
 
+    /**
+     * Returns the rate at which a mouse wheel can fire, in milliseconds.
+     *
+     * @return the wheel debounce time in milliseconds
+     */
     double getWheelDebounceTime();
 
     /**
@@ -47,6 +57,11 @@ public interface MousewheelOptions extends Serializable {
      */
     void setWheelDebounceTime(double wheelDebounceTime);
 
+    /**
+     * Returns how many scroll pixels mean a change of one full zoom level.
+     *
+     * @return the number of scroll pixels per zoom level
+     */
     double getWheelPxPerZoomLevel();
 
     /**

@@ -31,15 +31,29 @@ public class DivIcon extends Icon {
     private String html;
     private Point bgPos = Point.of(0, 0);
 
+    /**
+     * Creates a DivIcon using the default {@code leaflet-div-icon} CSS class.
+     */
     public DivIcon() {
         this(CSS_CLASS);
     }
 
+    /**
+     * Creates a DivIcon using the given CSS class name.
+     *
+     * @param className
+     *            the CSS class name to apply to the icon element
+     */
     public DivIcon(String className) {
         super();
         setClassName(className);
     }
 
+    /**
+     * Returns the custom HTML code placed inside the div element.
+     *
+     * @return the custom HTML content, or {@code null} if none is set
+     */
     public String getHtml() {
         return html;
     }
@@ -55,6 +69,11 @@ public class DivIcon extends Icon {
         this.html = html;
     }
 
+    /**
+     * Returns the relative position of the background, in pixels.
+     *
+     * @return the background position
+     */
     public Point getBgPos() {
         return bgPos;
     }

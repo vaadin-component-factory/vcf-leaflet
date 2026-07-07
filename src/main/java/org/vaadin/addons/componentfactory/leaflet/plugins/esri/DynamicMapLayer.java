@@ -23,6 +23,14 @@ import com.vaadin.flow.component.dependency.JsModule;
 import lombok.Getter;
 import org.vaadin.addons.componentfactory.leaflet.annotations.LeafletArgument;
 
+/**
+ * Esri layer that renders map images generated on-the-fly by an ArcGIS Server
+ * dynamic map service.
+ * <p>
+ * The layer is configured through the given {@link DynamicMapLayerOptions}, which
+ * are passed as the argument to the underlying esri-leaflet
+ * {@code dynamicMapLayer}.
+ */
 public class DynamicMapLayer extends EsriLeafletLayer {
 
   private static final long serialVersionUID = 1L;
@@ -31,6 +39,12 @@ public class DynamicMapLayer extends EsriLeafletLayer {
   @LeafletArgument
   private final DynamicMapLayerOptions options;
 
+  /**
+   * Creates a new dynamic map layer configured with the given options.
+   *
+   * @param options the options describing the ArcGIS dynamic map service and its
+   *                rendering settings
+   */
   public DynamicMapLayer(DynamicMapLayerOptions options) {
     this.options = options;
   }

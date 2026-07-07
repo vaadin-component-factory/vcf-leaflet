@@ -25,6 +25,14 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.vaadin.addons.componentfactory.leaflet.annotations.LeafletArgument;
 
+/**
+ * Esri layer that renders an ArcGIS vector basemap using the esri-leaflet-vector
+ * {@code vectorBasemapLayer}.
+ * <p>
+ * The layer is identified by a basemap style key and configured through
+ * {@link VectorBasemapLayerOptions}, which must supply the ArcGIS API key or
+ * token used to authenticate the basemap requests.
+ */
 @RequiredArgsConstructor
 @Getter
 @NpmPackage(value = "esri-leaflet-vector", version = "4.2.3")

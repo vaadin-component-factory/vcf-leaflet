@@ -46,6 +46,15 @@ public class ErrorEvent extends LeafletEvent {
   private final String message;
   private final int code;
 
+  /**
+   * Creates a new error event.
+   *
+   * @param source the component that fired the event
+   * @param fromClient <code>true</code> if the event originated from the client side
+   * @param layerId the identifier of the layer the error is related to
+   * @param message the error message
+   * @param code the error code, if applicable
+   */
   public ErrorEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.message") String message, @EventData("event.detail.code") int code) {

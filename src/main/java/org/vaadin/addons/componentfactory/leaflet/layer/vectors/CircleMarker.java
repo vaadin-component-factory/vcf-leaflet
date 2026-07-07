@@ -53,6 +53,8 @@ public class CircleMarker extends Path {
     }
 
     /**
+     * Gets the geographical point where the circle marker is centered.
+     *
      * @return the latlng
      */
     public LatLng getLatlng() {

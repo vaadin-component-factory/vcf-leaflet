@@ -16,8 +16,14 @@ package org.vaadin.addons.componentfactory.leaflet;
 
 import com.vaadin.flow.theme.lumo.Lumo;
 
+/**
+ * Set of theme variants applicable to the {@link LeafletMap} component.
+ */
 public enum LeafletMapVariant {
-    LUMO_DARK(Lumo.DARK), LUMO_LIGHT(Lumo.LIGHT);
+    /** Dark Lumo theme variant. */
+    LUMO_DARK(Lumo.DARK),
+    /** Light Lumo theme variant. */
+    LUMO_LIGHT(Lumo.LIGHT);
 
     private final String variant;
 
@@ -25,6 +31,11 @@ public enum LeafletMapVariant {
         this.variant = variant;
     }
 
+    /**
+     * Gets the theme variant name applied to the component.
+     *
+     * @return the variant name
+     */
     public String getVariantName() {
         return variant;
     }

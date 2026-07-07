@@ -28,20 +28,42 @@ public class PathOptions implements Serializable {
 	private String fillRule = "evenodd";
 	private String className;
 
+	/**
+	 * Creates a new set of path options initialized with the Leaflet default
+	 * values.
+	 */
 	public PathOptions() {
 	}
 
+	/**
+	 * Creates a new set of path options using the given color for both the stroke
+	 * and the fill.
+	 *
+	 * @param color the stroke and fill color
+	 */
 	public PathOptions(String color) {
 		this.color = color;
 		this.fillColor = color;
 	}
 
+	/**
+	 * Creates a new set of path options using the given color for both the stroke
+	 * and the fill, and the given stroke width.
+	 *
+	 * @param color  the stroke and fill color
+	 * @param weight the stroke width in pixels
+	 */
 	public PathOptions(String color, double weight) {
 		this.color = color;
 		this.fillColor = color;
 		this.weight = weight;
 	}
 
+	/**
+	 * Whether to draw stroke along the path.
+	 *
+	 * @return {@code true} if the stroke is drawn along the path
+	 */
 	public boolean isStroke() {
 		return stroke;
 	}
@@ -56,6 +78,11 @@ public class PathOptions implements Serializable {
 		this.stroke = stroke;
 	}
 
+	/**
+	 * Gets the stroke color.
+	 *
+	 * @return the color of the stroke
+	 */
 	public String getColor() {
 		return color;
 	}
@@ -69,6 +96,11 @@ public class PathOptions implements Serializable {
 		this.color = color;
 	}
 
+	/**
+	 * Gets the stroke width in pixels.
+	 *
+	 * @return the weight of the path
+	 */
 	public double getWeight() {
 		return weight;
 	}
@@ -82,6 +114,11 @@ public class PathOptions implements Serializable {
 		this.weight = weight;
 	}
 
+	/**
+	 * Gets the stroke opacity.
+	 *
+	 * @return the opacity of the path
+	 */
 	public double getOpacity() {
 		return opacity;
 	}
@@ -95,6 +132,11 @@ public class PathOptions implements Serializable {
 		this.opacity = opacity;
 	}
 
+	/**
+	 * Gets the shape to be used at the end of the stroke.
+	 *
+	 * @return the shape used at the end of the stroke
+	 */
 	public String getLineCap() {
 		return lineCap;
 	}
@@ -108,6 +150,11 @@ public class PathOptions implements Serializable {
 		this.lineCap = lineCap;
 	}
 
+	/**
+	 * Gets the shape to be used at the corners of the stroke.
+	 *
+	 * @return the shape used at the corners of the stroke
+	 */
 	public String getLineJoin() {
 		return lineJoin;
 	}
@@ -121,6 +168,11 @@ public class PathOptions implements Serializable {
 		this.lineJoin = lineJoin;
 	}
 
+	/**
+	 * Gets the stroke dash pattern.
+	 *
+	 * @return the string that defines the stroke dash pattern
+	 */
 	public String getDashArray() {
 		return dashArray;
 	}
@@ -135,6 +187,12 @@ public class PathOptions implements Serializable {
 		this.dashArray = dashArray;
 	}
 
+	/**
+	 * Gets the distance into the dash pattern to start the dash.
+	 *
+	 * @return the string that defines the distance into the dash pattern to start
+	 *         the dash
+	 */
 	public String getDashOffset() {
 		return dashOffset;
 	}
@@ -150,6 +208,11 @@ public class PathOptions implements Serializable {
 		this.dashOffset = dashOffset;
 	}
 
+	/**
+	 * Whether to fill the path with color.
+	 *
+	 * @return {@code true} if the path is filled with color
+	 */
 	public boolean isFill() {
 		return fill;
 	}
@@ -164,6 +227,11 @@ public class PathOptions implements Serializable {
 		this.fill = fill;
 	}
 
+	/**
+	 * Gets the fill color.
+	 *
+	 * @return the fill color of the path
+	 */
 	public String getFillColor() {
 		return fillColor;
 	}
@@ -177,6 +245,11 @@ public class PathOptions implements Serializable {
 		this.fillColor = fillColor;
 	}
 
+	/**
+	 * Gets the fill opacity.
+	 *
+	 * @return the fill opacity (0 between 1)
+	 */
 	public double getFillOpacity() {
 		return fillOpacity;
 	}
@@ -190,6 +263,11 @@ public class PathOptions implements Serializable {
 		this.fillOpacity = fillOpacity;
 	}
 
+	/**
+	 * Gets how the inside of a shape is determined.
+	 *
+	 * @return the string that defines how the inside of a shape is determined
+	 */
 	public String getFillRule() {
 		return fillRule;
 	}
@@ -204,6 +282,11 @@ public class PathOptions implements Serializable {
 		this.fillRule = fillRule;
 	}
 
+	/**
+	 * Gets the custom class name set on the element.
+	 *
+	 * @return the class name set on an element
+	 */
 	public String getClassName() {
 		return className;
 	}

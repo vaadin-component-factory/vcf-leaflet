@@ -28,6 +28,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 
 	private PathOptions pathOptions = new PathOptions();
 
+	/**
+	 * Whether to draw stroke along the path.
+	 *
+	 * @return {@code true} if the stroke is drawn along the path
+	 */
 	public boolean isStroke() {
 		return pathOptions.isStroke();
 	}
@@ -42,6 +47,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setStroke(stroke);
 	}
 
+	/**
+	 * Gets the stroke color.
+	 *
+	 * @return the color of the stroke
+	 */
 	public String getColor() {
 		return pathOptions.getColor();
 	}
@@ -55,6 +65,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setColor(color);
 	}
 
+	/**
+	 * Gets the stroke width in pixels.
+	 *
+	 * @return the weight of the path
+	 */
 	public double getWeight() {
 		return pathOptions.getWeight();
 	}
@@ -68,6 +83,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setWeight(weight);
 	}
 
+	/**
+	 * Gets the stroke opacity.
+	 *
+	 * @return the opacity of the path
+	 */
 	public double getOpacity() {
 		return pathOptions.getOpacity();
 	}
@@ -81,6 +101,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setOpacity(opacity);
 	}
 
+	/**
+	 * Gets the shape to be used at the end of the stroke.
+	 *
+	 * @return the shape used at the end of the stroke
+	 */
 	public String getLineCap() {
 		return pathOptions.getLineCap();
 	}
@@ -94,6 +119,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setLineCap(lineCap);
 	}
 
+	/**
+	 * Gets the shape to be used at the corners of the stroke.
+	 *
+	 * @return the shape used at the corners of the stroke
+	 */
 	public String getLineJoin() {
 		return pathOptions.getLineJoin();
 	}
@@ -107,6 +137,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setLineJoin(lineJoin);
 	}
 
+	/**
+	 * Gets the stroke dash pattern.
+	 *
+	 * @return the string that defines the stroke dash pattern
+	 */
 	public String getDashArray() {
 		return pathOptions.getDashArray();
 	}
@@ -121,6 +156,12 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setDashArray(dashArray);
 	}
 
+	/**
+	 * Gets the distance into the dash pattern to start the dash.
+	 *
+	 * @return the string that defines the distance into the dash pattern to start
+	 *         the dash
+	 */
 	public String getDashOffset() {
 		return pathOptions.getDashOffset();
 	}
@@ -136,6 +177,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setDashOffset(dashOffset);
 	}
 
+	/**
+	 * Whether to fill the path with color.
+	 *
+	 * @return {@code true} if the path is filled with color
+	 */
 	public boolean isFill() {
 		return pathOptions.isFill();
 	}
@@ -150,6 +196,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setFill(fill);
 	}
 
+	/**
+	 * Gets the fill color.
+	 *
+	 * @return the fill color of the path
+	 */
 	public String getFillColor() {
 		return pathOptions.getFillColor();
 	}
@@ -163,6 +214,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setFillColor(fillColor);
 	}
 
+	/**
+	 * Gets the fill opacity.
+	 *
+	 * @return the fill opacity (0 between 1)
+	 */
 	public double getFillOpacity() {
 		return pathOptions.getFillOpacity();
 	}
@@ -176,6 +232,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setFillOpacity(fillOpacity);
 	}
 
+	/**
+	 * Gets how the inside of a shape is determined.
+	 *
+	 * @return the string that defines how the inside of a shape is determined
+	 */
 	public String getFillRule() {
 		return pathOptions.getFillRule();
 	}
@@ -190,6 +251,11 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setFillRule(fillRule);
 	}
 
+	/**
+	 * Gets the custom class name set on the element.
+	 *
+	 * @return the class name set on an element
+	 */
 	public String getClassName() {
 		return pathOptions.getClassName();
 	}
@@ -203,11 +269,17 @@ public abstract class Path extends InteractiveLayer implements HasStyle, PathFun
 		this.pathOptions.setClassName(className);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public PathOptions getStyle() {
 		return pathOptions;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void setStyle(PathOptions pathOptions) {
 		this.pathOptions = pathOptions;

@@ -27,27 +27,57 @@ package org.vaadin.addons.componentfactory.leaflet.controls;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.LeafletObject;
 
+/**
+ * Base class for all Leaflet map controls. A control is a small UI element
+ * placed on the map (for example zoom buttons, scale line or attribution box)
+ * at one of the four map corners.
+ */
 public abstract class LeafletControl extends LeafletObject {
 
     private static final long serialVersionUID = -9057192899900276429L;
 
+    /**
+     * The corner of the map on which a control is positioned.
+     */
     public static enum ControlPosition {
-        topleft, topright, bottomleft, bottomright;
+        /** Top-left corner of the map. */
+        topleft,
+        /** Top-right corner of the map. */
+        topright,
+        /** Bottom-left corner of the map. */
+        bottomleft,
+        /** Bottom-right corner of the map. */
+        bottomright;
     }
 
     private final String controlType;
     private ControlPosition position = ControlPosition.topright;
     protected LeafletMap leafletMap;
 
+    /**
+     * Creates a new control of the given Leaflet control type.
+     *
+     * @param controlType the Leaflet type identifier of the control
+     */
     public LeafletControl(String controlType) {
         this.controlType = controlType;
     }
 
 
+    /**
+     * Gets the position of the control on the map.
+     *
+     * @return the position of the control
+     */
     public ControlPosition getPosition() {
         return position;
     }
 
+    /**
+     * Gets the Leaflet type identifier of this control.
+     *
+     * @return the Leaflet control type
+     */
     @Override
     public String getLeafletType() {
         return controlType;

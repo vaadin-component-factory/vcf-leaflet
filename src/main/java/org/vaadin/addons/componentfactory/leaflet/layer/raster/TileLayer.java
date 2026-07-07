@@ -54,6 +54,8 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns the subdomains of the tile service.
+     *
      * @return the subdomains
      */
     public String[] getSubdomains() {
@@ -71,6 +73,8 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns the URL of the tile image shown in place of tiles that fail to load.
+     *
      * @return the errorTileUrl
      */
     public String getErrorTileUrl() {
@@ -87,6 +91,8 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns the offset applied to the zoom number used in tile URLs.
+     *
      * @return the zoomOffset
      */
     public int getZoomOffset() {
@@ -103,6 +109,8 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns whether the Y axis numbering for tiles is inverted (TMS services).
+     *
      * @return the tms
      */
     public boolean isTms() {
@@ -119,6 +127,8 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns whether the zoom number used in tile URLs is reversed.
+     *
      * @return the zoomReverse
      */
     public boolean isZoomReverse() {
@@ -136,6 +146,9 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns whether retina displays are detected to request higher resolution
+     * tiles.
+     *
      * @return the detectRetina
      */
     public boolean isDetectRetina() {
@@ -154,6 +167,8 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns the crossOrigin attribute value applied to the tiles.
+     *
      * @return the crossOrigin
      */
     public String getCrossOrigin() {
@@ -173,6 +188,8 @@ public class TileLayer extends GridLayer {
     }
 
     /**
+     * Returns the URL template of this tile layer.
+     *
      * @return the urlTemplate
      */
     public String getUrlTemplate() {

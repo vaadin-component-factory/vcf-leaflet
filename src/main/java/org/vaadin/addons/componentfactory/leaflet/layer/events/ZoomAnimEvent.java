@@ -30,6 +30,9 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 
+/**
+ * Event fired during the zoom animation, carrying the target zoom animation data.
+ */
 @DomEvent("zoomanim")
 public class ZoomAnimEvent extends LeafletEvent {
 
@@ -38,6 +41,17 @@ public class ZoomAnimEvent extends LeafletEvent {
   private final int zoom;
   private boolean noUpdate;
 
+  /**
+   * Creates a new zoom animation event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that zoomed
+   * @param zoom the zoom level the animation is going to
+   * @param latitude the latitude of the center the animation is going to
+   * @param longitude the longitude of the center the animation is going to
+   * @param noUpdate <code>true</code> if layers should not update their contents due to this event
+   */
   public ZoomAnimEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.zoom") int zoom,

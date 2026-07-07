@@ -14,6 +14,9 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events.types;
 
+/**
+ * Enumeration of the mouse related Leaflet event names, such as click, mousedown and contextmenu.
+ */
 public enum MouseEventType implements LeafletEventType {
 
 	/**

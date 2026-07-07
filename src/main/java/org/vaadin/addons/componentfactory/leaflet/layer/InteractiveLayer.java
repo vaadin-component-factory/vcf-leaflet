@@ -33,21 +33,45 @@ public abstract class InteractiveLayer extends Layer implements SupportsMouseEve
 	private boolean interactive = true;
 	private boolean bubblingMouseEvents = true;
 
+	/**
+	 * Creates a new interactive layer that is interactive and bubbles mouse events
+	 * by default.
+	 */
 	protected InteractiveLayer() {
 	}
 
+	/**
+	 * Returns whether this layer emits mouse events and reacts to user interaction.
+	 *
+	 * @return {@code true} if the layer is interactive
+	 */
 	public boolean isInteractive() {
 		return interactive;
 	}
 
+	/**
+	 * Sets whether this layer emits mouse events and reacts to user interaction.
+	 *
+	 * @param interactive {@code true} to make the layer interactive
+	 */
 	public void setInteractive(final boolean interactive) {
 		this.interactive = interactive;
 	}
 
+	/**
+	 * Returns whether mouse events on this layer bubble up to its parents.
+	 *
+	 * @return {@code true} if mouse events bubble up
+	 */
 	public boolean isBubblingMouseEvents() {
 		return bubblingMouseEvents;
 	}
 
+	/**
+	 * Sets whether mouse events on this layer bubble up to its parents.
+	 *
+	 * @param bubblingMouseEvents {@code true} to let mouse events bubble up
+	 */
 	public void setBubblingMouseEvents(final boolean bubblingMouseEvents) {
 		this.bubblingMouseEvents = bubblingMouseEvents;
 	}

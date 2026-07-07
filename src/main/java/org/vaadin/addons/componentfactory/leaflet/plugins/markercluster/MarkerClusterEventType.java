@@ -3,6 +3,10 @@ package org.vaadin.addons.componentfactory.leaflet.plugins.markercluster;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.EventTypeRegistry;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.LeafletEventType;
 
+/**
+ * Enumerates the events fired by a {@link MarkerClusterGroup} in addition to the
+ * standard Leaflet layer events.
+ */
 public enum MarkerClusterEventType implements LeafletEventType {
 
     /**

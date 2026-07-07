@@ -24,11 +24,22 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 
+/**
+ * Event fired when the number of zoom levels on the map changes, i.e. when the minimum or maximum
+ * zoom is changed.
+ */
 @DomEvent("leaflet-zoomlevelschange")
 public class ZoomLevelsChangeEvent extends LeafletEvent {
 
   private static final long serialVersionUID = 8461284901421281146L;
 
+  /**
+   * Creates a new zoom levels change event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer whose zoom levels changed
+   */
   public ZoomLevelsChangeEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, MapEventType.zoomlevelschange);

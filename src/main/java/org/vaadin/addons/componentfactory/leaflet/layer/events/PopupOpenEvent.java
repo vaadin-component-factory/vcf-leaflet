@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.PopupEventType;
 
+/**
+ * Event fired when a popup bound to a layer is opened.
+ */
 @DomEvent("popupopen")
 public class PopupOpenEvent extends PopupEvent {
 
   private static final long serialVersionUID = 7868462790937722918L;
 
+  /**
+   * Creates a new popup open event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer the popup is bound to
+   */
   public PopupOpenEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, PopupEventType.popupopen, null);

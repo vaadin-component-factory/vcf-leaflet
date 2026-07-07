@@ -25,15 +25,27 @@ public class MultiPolyline extends Polyline {
     private static final long serialVersionUID = 1274901686872790896L;
     private final MultiLatLngArray latlngs;
 
+    /**
+     * Instantiates a multi polyline from the given structure of coordinates, where
+     * each element represents a separate polyline.
+     *
+     * @param latlngs the coordinates of each polyline
+     */
     public MultiPolyline(MultiLatLngArray latlngs) {
         this.latlngs = latlngs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GeometryStructure getLatlngs() {
         return this.latlngs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLeafletType() {
         return Polyline.class.getSimpleName();

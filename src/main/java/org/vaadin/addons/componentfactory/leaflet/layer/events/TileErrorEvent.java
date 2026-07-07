@@ -30,11 +30,23 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.TileEventType;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Event fired when there is an error loading a tile.
+ */
 @DomEvent("tileerror")
 public class TileErrorEvent extends TileEvent {
 
   private static final long serialVersionUID = -1777585791547105067L;
 
+  /**
+   * Creates a new tile error event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the tile layer the event relates to
+   * @param coordsX the tile x coordinate
+   * @param coordsY the tile y coordinate
+   */
   public TileErrorEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.coords.x") double coordsX,

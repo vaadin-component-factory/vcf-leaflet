@@ -33,14 +33,29 @@ public class Polyline extends Path {
     @LeafletArgument
     private final LatLngArray latlngs;
 
+    /**
+     * Instantiates a polyline from the given geographical points.
+     *
+     * @param latlngs the geographical points of the polyline
+     */
     public Polyline(LatLng... latlngs) {
         this(new LatLngArray(latlngs));
     }
 
+    /**
+     * Instantiates a polyline from the given list of geographical points.
+     *
+     * @param latlngs the geographical points of the polyline
+     */
     public Polyline(List<LatLng> latlngs) {
         this(new LatLngArray(latlngs));
     }
 
+    /**
+     * Instantiates a polyline from the given array of geographical points.
+     *
+     * @param latlngs the geographical points of the polyline
+     */
     public Polyline(LatLngArray latlngs) {
         this.latlngs = latlngs;
     }
@@ -63,6 +78,11 @@ public class Polyline extends Path {
         return getLatlngs().getBounds();
     }
 
+    /**
+     * Gets how much to simplify the polyline on each zoom level.
+     *
+     * @return how much to simplify the polyline on each zoom level
+     */
     public double getSmoothFactor() {
         return smoothFactor;
     }
@@ -77,6 +97,11 @@ public class Polyline extends Path {
         this.smoothFactor = smoothFactor;
     }
 
+    /**
+     * Whether polyline clipping is disabled.
+     *
+     * @return {@code true} if polyline clipping is disabled
+     */
     public boolean isNoClip() {
         return noClip;
     }
@@ -90,6 +115,11 @@ public class Polyline extends Path {
         this.noClip = noClip;
     }
 
+    /**
+     * Gets the geographical points that make up this polyline.
+     *
+     * @return the coordinates of the polyline
+     */
     public GeometryStructure getLatlngs() {
         return latlngs;
     }

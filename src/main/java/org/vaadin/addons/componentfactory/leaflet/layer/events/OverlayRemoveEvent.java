@@ -25,11 +25,23 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.controls.LayersControlEvent;
 import org.vaadin.addons.componentfactory.leaflet.controls.LayersControl.LayerControlEventType;
 
+/**
+ * Event fired when an overlay layer is deselected (removed from the map) through the layers
+ * control.
+ */
 @DomEvent("overlayremove")
 public class OverlayRemoveEvent extends LayersControlEvent {
 
   private static final long serialVersionUID = 5509563423863560531L;
 
+  /**
+   * Creates a new overlay remove event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the overlay layer that was removed
+   * @param name the name of the overlay layer as shown in the layers control
+   */
   public OverlayRemoveEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.name") String name) {

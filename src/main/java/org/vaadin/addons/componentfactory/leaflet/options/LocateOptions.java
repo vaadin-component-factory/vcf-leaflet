@@ -38,6 +38,8 @@ public class LocateOptions implements Serializable {
     private boolean enableHighAccuracy = false;
 
     /**
+     * Returns whether continuous watching of location changes is enabled.
+     *
      * @return the watch
      */
     public boolean isWatch() {
@@ -56,6 +58,9 @@ public class LocateOptions implements Serializable {
     }
 
     /**
+     * Returns whether the map view is set automatically to the detected user
+     * location.
+     *
      * @return the setView
      */
     public boolean isSetView() {
@@ -73,6 +78,8 @@ public class LocateOptions implements Serializable {
     }
 
     /**
+     * Returns the maximum zoom used for automatic view setting.
+     *
      * @return the maxZoom
      */
     public int getMaxZoom() {
@@ -89,6 +96,8 @@ public class LocateOptions implements Serializable {
     }
 
     /**
+     * Returns the number of milliseconds to wait for a geolocation response.
+     *
      * @return the timeout
      */
     public int getTimeout() {
@@ -106,6 +115,9 @@ public class LocateOptions implements Serializable {
     }
 
     /**
+     * Returns the maximum age of the detected location for which a cached
+     * result may be returned.
+     *
      * @return the maximumAge
      */
     public int getMaximumAge() {
@@ -123,6 +135,8 @@ public class LocateOptions implements Serializable {
     }
 
     /**
+     * Returns whether high accuracy geolocation is enabled.
+     *
      * @return the enableHighAccuracy
      */
     public boolean isEnableHighAccuracy() {

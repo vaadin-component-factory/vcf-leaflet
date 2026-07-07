@@ -3,6 +3,10 @@ package org.vaadin.addons.componentfactory.leaflet.plugins.fullscreen;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEvent;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEventListener;
 
+/**
+ * Exposes the fullscreen control API, allowing listeners to be notified when the
+ * map enters or exits fullscreen mode and the fullscreen state to be toggled.
+ */
 public interface WithFullScreenControl {
 
     /**
@@ -21,6 +25,9 @@ public interface WithFullScreenControl {
      */
     void onExitFullscreen(LeafletEventListener<LeafletEvent> listener);
 
+    /**
+     * Toggles the map between fullscreen and normal mode.
+     */
     void toggleFullscreen();
 
 }

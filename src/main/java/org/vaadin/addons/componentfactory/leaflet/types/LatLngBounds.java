@@ -36,23 +36,46 @@ public class LatLngBounds implements BasicType {
     @JsonProperty("_northEast")
     private LatLng northEast;
 
+    /**
+     * Creates a new empty bounds.
+     */
     public LatLngBounds() {
     }
-    
+
+    /**
+     * Creates bounds extended to contain all the given points.
+     *
+     * @param latlngs
+     *            the points the bounds should contain
+     */
     public LatLngBounds(LatLng... latlngs) {
         this(Arrays.asList(latlngs));
     }
 
+    /**
+     * Creates bounds extended to contain all the given points.
+     *
+     * @param latlngs
+     *            the points the bounds should contain
+     */
     public LatLngBounds(List<LatLng> latlngs) {
         extend(latlngs);
     }
 
+    /**
+     * Creates bounds reduced to the single given point.
+     *
+     * @param latlng
+     *            the point defining both corners of the bounds
+     */
     public LatLngBounds(LatLng latlng) {
         southWest = new LatLng(latlng.getLat(), latlng.getLng());
         northEast = new LatLng(latlng.getLat(), latlng.getLng());
     }
 
     /**
+     * Sets the south-west corner of the bounds.
+     *
      * @param southWest
      *            the southWest to set
      */
@@ -61,6 +84,8 @@ public class LatLngBounds implements BasicType {
     }
 
     /**
+     * Sets the north-east corner of the bounds.
+     *
      * @param northEast
      *            the northEast to set
      */
@@ -158,10 +183,22 @@ public class LatLngBounds implements BasicType {
         return new LatLng(lat, lon);
     }
 
+    /**
+     * Extends the bounds to contain the given points.
+     *
+     * @param latlngs
+     *            the points to include
+     */
     public void extend(LatLng... latlngs) {
         extend(Arrays.asList(latlngs));
     }
 
+    /**
+     * Extends the bounds to contain the given points.
+     *
+     * @param latlngs
+     *            the points to include
+     */
     public void extend(List<LatLng> latlngs) {
         if (latlngs != null && !latlngs.isEmpty()) {
             LatLng latLng = latlngs.get(0);

@@ -29,9 +29,15 @@ public class MultiLatLngArray extends ArrayList<LatLngArray> implements Geometry
 
 	private static final long serialVersionUID = 7453345091992067182L;
 
+	/**
+	 * Creates a new empty multi dimensional list of LatLng coordinates.
+	 */
 	public MultiLatLngArray() {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public LatLngBounds getBounds() {
 		LatLngBounds bounds = new LatLngBounds(get(0));

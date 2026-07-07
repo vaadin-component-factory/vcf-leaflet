@@ -34,21 +34,43 @@ public class Polygon extends Polyline {
 	@LeafletArgument
     private final MultiLatLngArray latlngs;
 
+    /**
+     * Instantiates a polygon from the given geographical points forming its
+     * exterior ring.
+     *
+     * @param latLngs the geographical points of the polygon
+     */
     public Polygon(LatLng... latLngs) {
         this(Arrays.asList(latLngs));
     }
 
+    /**
+     * Instantiates a polygon from the given list of geographical points forming its
+     * exterior ring.
+     *
+     * @param exteriorLatlngs the geographical points of the exterior ring
+     */
     public Polygon(List<LatLng> exteriorLatlngs) {
         latlngs = new MultiLatLngArray();
         latlngs.add(new LatLngArray(exteriorLatlngs));
     }
 
+    /**
+     * Instantiates a polygon from the given exterior ring and interior rings
+     * (holes).
+     *
+     * @param exteriorLatlngs the geographical points of the exterior ring
+     * @param interiorRings   the interior rings (holes) of the polygon
+     */
     public Polygon(List<LatLng> exteriorLatlngs, MultiLatLngArray interiorRings) {
         latlngs = new MultiLatLngArray();
         latlngs.add(new LatLngArray(exteriorLatlngs));
         latlngs.addAll(interiorRings);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GeometryStructure getLatlngs() {
         return this.latlngs;

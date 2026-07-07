@@ -49,10 +49,21 @@ public class HeatLayerOptions implements Serializable {
     private double blur = 15;
     private Map<Double, String> gradient = defaultGradient();
 
+    /**
+     * Returns the minimum opacity the heat will start at.
+     *
+     * @return the minimum opacity
+     */
     public double getMinOpacity() {
         return minOpacity;
     }
 
+    /**
+     * Builds the default color gradient, mapping intensity ratios to colors
+     * (blue, cyan, lime, yellow and red).
+     *
+     * @return the default color gradient configuration
+     */
     public static Map<Double, String> defaultGradient() {
         Map<Double, String> colors = new HashMap<>();
         colors.put(0.4, "blue");
@@ -63,46 +74,104 @@ public class HeatLayerOptions implements Serializable {
         return colors;
     }
 
+    /**
+     * Sets the minimum opacity the heat will start at.
+     *
+     * @param minOpacity the minimum opacity
+     */
     public void setMinOpacity(double minOpacity) {
         this.minOpacity = minOpacity;
     }
 
+    /**
+     * Returns the zoom level at which the points reach maximum intensity.
+     *
+     * @return the maximum zoom level
+     */
     public int getMaxZoom() {
         return maxZoom;
     }
 
+    /**
+     * Sets the zoom level at which the points reach maximum intensity (as
+     * intensity scales with zoom).
+     *
+     * @param maxZoom the maximum zoom level
+     */
     public void setMaxZoom(int maxZoom) {
         this.maxZoom = maxZoom;
     }
 
+    /**
+     * Returns the maximum point intensity.
+     *
+     * @return the maximum point intensity
+     */
     public double getMax() {
         return max;
     }
 
+    /**
+     * Sets the maximum point intensity.
+     *
+     * @param max the maximum point intensity
+     */
     public void setMax(double max) {
         this.max = max;
     }
 
+    /**
+     * Returns the radius of each point of the heatmap.
+     *
+     * @return the point radius
+     */
     public double getRadius() {
         return radius;
     }
 
+    /**
+     * Sets the radius of each point of the heatmap.
+     *
+     * @param radius the point radius
+     */
     public void setRadius(double radius) {
         this.radius = radius;
     }
 
+    /**
+     * Returns the amount of blur applied to the heatmap.
+     *
+     * @return the blur amount
+     */
     public double getBlur() {
         return blur;
     }
 
+    /**
+     * Sets the amount of blur applied to the heatmap.
+     *
+     * @param blur the blur amount
+     */
     public void setBlur(double blur) {
         this.blur = blur;
     }
 
+    /**
+     * Sets the color gradient configuration mapping intensity ratios to colors,
+     * e.g. {@code {0.4: 'blue', 0.65: 'lime', 1: 'red'}}.
+     *
+     * @param gradient the color gradient configuration
+     */
     public void setGradient(Map<Double, String> gradient) {
         this.gradient = gradient;
     }
 
+    /**
+     * Returns the color gradient configuration mapping intensity ratios to
+     * colors.
+     *
+     * @return the color gradient configuration
+     */
     public Map<Double, String> getGradient() {
         return gradient;
     }

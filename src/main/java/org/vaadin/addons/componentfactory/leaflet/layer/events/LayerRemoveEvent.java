@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.LayerEventType;
 
+/**
+ * Event fired when a layer is removed from the map.
+ */
 @DomEvent("layerremove")
 public class LayerRemoveEvent extends LayerEvent {
 
   private static final long serialVersionUID = 1335834304448706455L;
 
+  /**
+   * Creates a new layer remove event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that was removed
+   */
   public LayerRemoveEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, LayerEventType.layerremove, null);

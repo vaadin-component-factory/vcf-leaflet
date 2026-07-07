@@ -32,14 +32,27 @@ public class LatLngArray extends ArrayList<LatLng> implements GeometryStructure 
 
 	private static final long serialVersionUID = -909287963967251959L;
 
+	/**
+	 * Creates a new array containing the given LatLng coordinates.
+	 *
+	 * @param latlngs the coordinates to add to this array
+	 */
 	public LatLngArray(LatLng[] latlngs) {
 		this(Arrays.asList(latlngs));
 	}
 
+	/**
+	 * Creates a new array containing the given list of LatLng coordinates.
+	 *
+	 * @param latlngs the coordinates to add to this array
+	 */
 	public LatLngArray(List<LatLng> latlngs) {
 		addAll(latlngs);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public LatLngBounds getBounds() {
 		LatLngBounds bounds = new LatLngBounds(get(0));

@@ -31,7 +31,8 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.types.DragEventTy
 import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 
 /**
- * The base event object. All other event objects contain these properties too.
+ * Event fired when a draggable layer has finished being dragged, carrying the final coordinates and
+ * the distance moved.
  */
 @DomEvent("dragend")
 public class DragEndEvent extends LeafletEvent {
@@ -40,6 +41,16 @@ public class DragEndEvent extends LeafletEvent {
   private final double distance;
   private final LatLng latLng;
 
+  /**
+   * Creates a new drag end event.
+   *
+   * @param source the component that fired the event
+   * @param fromClient <code>true</code> if the event originated from the client side
+   * @param layerId the identifier of the layer that was dragged
+   * @param lat the latitude of the final coordinates
+   * @param lng the longitude of the final coordinates
+   * @param distance the distance in pixels the draggable element was moved by
+   */
   public DragEndEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.target.getLatLng().lat") double lat,
@@ -59,6 +70,11 @@ public class DragEndEvent extends LeafletEvent {
     return distance;
   }
 
+  /**
+   * The coordinates of the layer after the drag operation finished.
+   *
+   * @return the final coordinates
+   */
   public LatLng getLatLng() {
     return latLng;
   }

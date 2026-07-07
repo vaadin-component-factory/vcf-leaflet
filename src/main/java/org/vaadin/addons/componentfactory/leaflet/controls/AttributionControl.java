@@ -30,11 +30,16 @@ public class AttributionControl extends LeafletControl {
     private static final long serialVersionUID = 9098765502642340035L;
     private String prefix = "Leaflet";
 
+    /**
+     * Creates a new attribution control.
+     */
     public AttributionControl() {
         super("attribution");
     }
 
     /**
+     * Gets the HTML text shown before the attributions.
+     *
      * @return the prefix
      */
     public String getPrefix() {

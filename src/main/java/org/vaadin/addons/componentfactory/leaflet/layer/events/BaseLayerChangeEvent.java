@@ -25,11 +25,22 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.controls.LayersControlEvent;
 import org.vaadin.addons.componentfactory.leaflet.controls.LayersControl.LayerControlEventType;
 
+/**
+ * Event fired when a different base layer is selected through the layers control.
+ */
 @DomEvent("baselayerchange")
 public class BaseLayerChangeEvent extends LayersControlEvent {
 
   private static final long serialVersionUID = 5318070072204705349L;
 
+  /**
+   * Creates a new base layer change event.
+   *
+   * @param source the component that fired the event
+   * @param fromClient <code>true</code> if the event originated from the client side
+   * @param layerId the identifier of the layer that became the active base layer
+   * @param name the name of the newly selected base layer
+   */
   public BaseLayerChangeEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.name") String name) {

@@ -37,18 +37,37 @@ public class FeatureGroup extends LayerGroup
 	private static final long serialVersionUID = 4315847050612014255L;
 	private PathOptions pathOptions = new PathOptions();
 
+	/**
+	 * Creates an empty feature group.
+	 */
 	public FeatureGroup() {
 		super();
 	}
 
+	/**
+	 * Creates a feature group containing the given layers.
+	 *
+	 * @param layers the layers to add to this group
+	 */
 	public FeatureGroup(final Layer... layers) {
 		super(layers);
 	}
 
+	/**
+	 * Creates a feature group containing the given layers.
+	 *
+	 * @param layers the layers to add to this group
+	 */
 	public FeatureGroup(final List<Layer> layers) {
 		super(layers);
 	}
 
+	/**
+	 * Sets the given path style options on the feature group and applies them to
+	 * every member layer that supports styling.
+	 *
+	 * @param pathOptions the style options to apply to all member layers
+	 */
 	@Override
 	public void setStyle(PathOptions pathOptions) {
 		FeatureGroupFunctions.super.setStyle(pathOptions);
@@ -57,6 +76,11 @@ public class FeatureGroup extends LayerGroup
 				.forEach(layer -> layer.setStyle(pathOptions));
 	}
 
+	/**
+	 * Returns the path style options currently applied to this feature group.
+	 *
+	 * @return the current style options
+	 */
 	@Override
 	public PathOptions getStyle() {
 		return pathOptions;

@@ -27,6 +27,11 @@ import java.io.Serializable;
  */
 public interface KeyboardNavigationOptions extends Serializable {
 
+    /**
+     * Returns whether keyboard navigation of the map is enabled.
+     *
+     * @return {@code true} if keyboard navigation is enabled
+     */
     boolean isKeyboard();
 
     /**
@@ -37,6 +42,11 @@ public interface KeyboardNavigationOptions extends Serializable {
      */
     void setKeyboard(boolean keyboard);
 
+    /**
+     * Returns the amount of pixels the map pans when pressing an arrow key.
+     *
+     * @return the amount of pixels to pan when pressing an arrow key
+     */
     double getKeyboardPanDelta();
 
     /**

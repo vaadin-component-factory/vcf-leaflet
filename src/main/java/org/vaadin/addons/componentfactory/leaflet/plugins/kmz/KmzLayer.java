@@ -27,7 +27,11 @@ public class KmzLayer extends Layer {
 
     private static final long serialVersionUID = 6515861726518730409L;
 
+    /**
+     * The event types fired by a {@link KmzLayer}.
+     */
     public static enum KmzLayerEventType implements LeafletEventType {
+        /** Fired when the KMZ file has finished loading and parsing. */
         load;
     }
 
@@ -38,18 +42,38 @@ public class KmzLayer extends Layer {
     @LeafletArgument
     private String url;
 
+    /**
+     * Instantiates a KMZ layer that loads the KMZ file at the given URL.
+     *
+     * @param url the URL of the KMZ file to load
+     */
     public KmzLayer(String url) {
         this.url = url;
     }
 
+    /**
+     * Loads the KMZ file at the given URL into this layer.
+     *
+     * @param url the URL of the KMZ file to load
+     */
     public void load(String url) {
         executeJs("load", url);
     }
 
+    /**
+     * Registers a listener notified when the KMZ file has finished loading.
+     *
+     * @param listener the listener to call when the event occurs, not {@code null}
+     */
     public void onLoad(LeafletEventListener<LeafletEvent> listener) {
         on(KmzLayerEventType.load, listener);
     }
 
+    /**
+     * Returns the URL of the KMZ file loaded by this layer.
+     *
+     * @return the KMZ file URL
+     */
     public String getUrl() {
         return url;
     }

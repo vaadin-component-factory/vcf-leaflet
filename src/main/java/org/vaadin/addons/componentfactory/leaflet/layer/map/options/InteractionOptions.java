@@ -27,6 +27,11 @@ import java.io.Serializable;
  */
 public interface InteractionOptions extends Serializable {
 
+    /**
+     * Returns whether popups are closed when the user clicks the map.
+     *
+     * @return {@code true} if popups close when the user clicks the map
+     */
     boolean isClosePopupOnClick();
 
     /**
@@ -37,6 +42,11 @@ public interface InteractionOptions extends Serializable {
      */
     void setClosePopupOnClick(boolean closePopupOnClick);
 
+    /**
+     * Returns the value the map's zoom level is forced to be a multiple of.
+     *
+     * @return the zoom snap value
+     */
     double getZoomSnap();
 
     /**
@@ -50,6 +60,12 @@ public interface InteractionOptions extends Serializable {
      */
     void setZoomSnap(double zoomSnap);
 
+    /**
+     * Returns how much the map's zoom level changes after a zoomIn(), zoomOut(),
+     * pressing + or - on the keyboard, or using the zoom controls.
+     *
+     * @return the zoom delta value
+     */
     double getZoomDelta();
 
     /**
@@ -62,6 +78,12 @@ public interface InteractionOptions extends Serializable {
      */
     void setZoomDelta(double zoomDelta);
 
+    /**
+     * Returns whether the map automatically handles browser window resize to update
+     * itself.
+     *
+     * @return {@code true} if the map automatically handles browser window resize
+     */
     boolean isTrackResize();
 
     /**
@@ -71,6 +93,12 @@ public interface InteractionOptions extends Serializable {
      */
     void setTrackResize(boolean trackResize);
 
+    /**
+     * Returns whether the map can be zoomed to a rectangular area specified by
+     * dragging the mouse while pressing the shift key.
+     *
+     * @return {@code true} if box (shift-drag) zoom is enabled
+     */
     boolean isBoxZoom();
 
     /**
@@ -82,6 +110,12 @@ public interface InteractionOptions extends Serializable {
      */
     void setBoxZoom(boolean boxZoom);
 
+    /**
+     * Returns whether the map can be zoomed in by double clicking on it and zoomed
+     * out by double clicking while holding shift.
+     *
+     * @return {@code true} if double-click zoom is enabled
+     */
     boolean isDoubleClickZoom();
 
     /**
@@ -93,6 +127,11 @@ public interface InteractionOptions extends Serializable {
      */
     void setDoubleClickZoom(boolean doubleClickZoom);
 
+    /**
+     * Returns whether the map is draggable with mouse/touch.
+     *
+     * @return {@code true} if the map is draggable
+     */
     boolean isDragging();
 
     /**

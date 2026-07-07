@@ -21,6 +21,10 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.Evented;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.KeyboardEvent;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEventListener;
 
+/**
+ * Mixin interface adding default methods to register listeners for keyboard related Leaflet events
+ * on the implementing component.
+ */
 public interface SupportsKeyboardEvents extends Evented {
 
     /**

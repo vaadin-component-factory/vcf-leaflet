@@ -53,6 +53,25 @@ public class LocationEvent extends LeafletEvent {
   private final double speed;
   private final double timestamp;
 
+  /**
+   * Creates a new location event carrying the located position and its accuracy details.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer the event relates to
+   * @param latitude the latitude of the detected location
+   * @param longitude the longitude of the detected location
+   * @param northEastLatitude the latitude of the north-east corner of the location bounds
+   * @param northEastLongitude the longitude of the north-east corner of the location bounds
+   * @param southWestLatitude the latitude of the south-west corner of the location bounds
+   * @param southWestLongitude the longitude of the south-west corner of the location bounds
+   * @param accuracy the accuracy of the location in meters
+   * @param altitude the height of the position above the WGS84 ellipsoid in meters
+   * @param altitudeAccuracy the accuracy of the altitude in meters
+   * @param heading the direction of travel in degrees counting clockwise from true North
+   * @param speed the current velocity in meters per second
+   * @param timestamp the time when the position was acquired
+   */
   public LocationEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.latlng.lat") double latitude,

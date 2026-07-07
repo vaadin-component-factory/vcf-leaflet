@@ -17,6 +17,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.json.JsonMapper;
 
+/**
+ * Base class for serializable client-side Leaflet objects. It provides a unique
+ * identifier, JSON serialization and access to the Leaflet constructor
+ * arguments declared through {@link LeafletArgument}.
+ */
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(value = { "json" })
 public abstract class LeafletObject implements ExecutableFunctions, Serializable {
@@ -26,6 +31,10 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
     private ExecutableFunctions parent;
     private final ObjectMapper objectMapper;
 
+    /**
+     * Creates a new Leaflet object, initializing its Jackson mapper and
+     * assigning it a random unique identifier.
+     */
     protected LeafletObject() {
         JsonMapper.Builder builder = JsonMapper.builder();
         configureObjectMapper(builder);
@@ -44,11 +53,22 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
     protected void configureObjectMapper(final JsonMapper.Builder builder) {
     }
 
+    /**
+     * Returns the unique identifier of this object.
+     *
+     * @return the object uuid
+     */
     @Override
     public String getUuid() {
         return this.uuid;
     }
-    
+
+    /**
+     * Returns the JSON representation of this object, computing it lazily on
+     * first access.
+     *
+     * @return the JSON representation of this object
+     */
     public String getJson() {
         if (this.json == null) {
             try {
@@ -61,10 +81,22 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
         return this.json;
     }
 
+    /**
+     * Returns the names of the fields used as client-side constructor
+     * arguments, ordered by their {@link LeafletArgument} index.
+     *
+     * @return the constructor argument names
+     */
     public List<String> getConstructorArgumentNames() {
         return findLeafletArguments(getClass()).stream().map(Field::getName).distinct().collect(Collectors.toList());
     }
 
+    /**
+     * Returns the Leaflet type name of this object, used to instantiate the
+     * matching class on the client side.
+     *
+     * @return the Leaflet type name
+     */
     public String getLeafletType() {
         return getClass().getSimpleName();
     }
@@ -80,6 +112,17 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
         return fields;
     }
     
+    /**
+     * Delegates the execution of the named client-side function to the parent,
+     * if any.
+     *
+     * @param target
+     *            the client object to invoke the function on
+     * @param functionName
+     *            the name of the function to call
+     * @param arguments
+     *            the arguments passed to the function
+     */
     @Override
     public void executeJs(Identifiable target, String functionName, Serializable... arguments) {
         if (parent instanceof ExecutableFunctions) {
@@ -87,6 +130,23 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
         }
     }
 
+    /**
+     * Delegates a client-side function call, returning a result, to the parent,
+     * if any.
+     *
+     * @param <T>
+     *            the type of the returned result
+     * @param target
+     *            the client object to invoke the function on
+     * @param functionName
+     *            the name of the function to call
+     * @param resultType
+     *            the type the client result should be deserialized to
+     * @param arguments
+     *            the arguments passed to the function
+     * @return a future completed with the function result, or {@code null} if
+     *         there is no parent to delegate to
+     */
     @Override
     public <T extends Serializable> CompletableFuture<T> call(Identifiable target, String functionName, Class<T> resultType, Serializable... arguments) {
         if (parent instanceof ExecutableFunctions) {
@@ -95,11 +155,23 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
             return null;
         }
     }
-    
+
+    /**
+     * Sets the parent through which client-side function calls are delegated.
+     *
+     * @param parent
+     *            the parent to set
+     */
     protected void setParent(ExecutableFunctions parent) {
         this.parent = parent;
     }
-    
+
+    /**
+     * Returns the parent through which client-side function calls are
+     * delegated.
+     *
+     * @return the parent
+     */
     protected ExecutableFunctions getParent() {
         return parent;
     }

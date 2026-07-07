@@ -14,6 +14,9 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events.types;
 
+/**
+ * Enumeration of the Leaflet event types related to dragging and moving a marker or layer.
+ */
 public enum DragEventType implements LeafletEventType {
 
 	/**
@@ -47,6 +50,11 @@ public enum DragEventType implements LeafletEventType {
 	 */
 	moveend;
 
+	/**
+	 * Returns the name of the corresponding Leaflet event.
+	 *
+	 * @return the Leaflet event name
+	 */
 	@Override
 	public String getLeafletEvent() {
 		return name();

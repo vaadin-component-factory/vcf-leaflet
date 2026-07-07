@@ -34,38 +34,81 @@ public class ZoomControl extends LeafletControl {
 	private String zoomOutText = "&#x2212";
 	private String zoomOutTitle = "Zoom out";
 
+	/**
+	 * Creates a new zoom control.
+	 */
 	public ZoomControl() {
 		super("zoom");
 	}
 
+	/**
+	 * Gets the text set on the zoom-in button.
+	 *
+	 * @return the zoom-in button text
+	 */
 	public String getZoomInText() {
 		return zoomInText;
 	}
 
+	/**
+	 * Sets the text shown on the zoom-in button.
+	 *
+	 * @param zoomInText the zoom-in button text
+	 */
 	public void setZoomInText(String zoomInText) {
 		this.zoomInText = zoomInText;
 	}
 
+	/**
+	 * Gets the title (tooltip) set on the zoom-in button.
+	 *
+	 * @return the zoom-in button title
+	 */
 	public String getZoomInTitle() {
 		return zoomInTitle;
 	}
 
+	/**
+	 * Sets the title (tooltip) shown on the zoom-in button.
+	 *
+	 * @param zoomInTitle the zoom-in button title
+	 */
 	public void setZoomInTitle(String zoomInTitle) {
 		this.zoomInTitle = zoomInTitle;
 	}
 
+	/**
+	 * Gets the text set on the zoom-out button.
+	 *
+	 * @return the zoom-out button text
+	 */
 	public String getZoomOutText() {
 		return zoomOutText;
 	}
 
+	/**
+	 * Sets the text shown on the zoom-out button.
+	 *
+	 * @param zoomOutText the zoom-out button text
+	 */
 	public void setZoomOutText(String zoomOutText) {
 		this.zoomOutText = zoomOutText;
 	}
 
+	/**
+	 * Gets the title (tooltip) set on the zoom-out button.
+	 *
+	 * @return the zoom-out button title
+	 */
 	public String getZoomOutTitle() {
 		return zoomOutTitle;
 	}
 
+	/**
+	 * Sets the title (tooltip) shown on the zoom-out button.
+	 *
+	 * @param zoomOutTitle the zoom-out button title
+	 */
 	public void setZoomOutTitle(String zoomOutTitle) {
 		this.zoomOutTitle = zoomOutTitle;
 	}

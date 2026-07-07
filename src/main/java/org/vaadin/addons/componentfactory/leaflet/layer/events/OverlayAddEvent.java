@@ -25,11 +25,22 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.controls.LayersControlEvent;
 import org.vaadin.addons.componentfactory.leaflet.controls.LayersControl.LayerControlEventType;
 
+/**
+ * Event fired when an overlay layer is selected (added to the map) through the layers control.
+ */
 @DomEvent("overlayadd")
 public class OverlayAddEvent extends LayersControlEvent {
 
   private static final long serialVersionUID = 3295607427378773699L;
 
+  /**
+   * Creates a new overlay add event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the overlay layer that was added
+   * @param name the name of the overlay layer as shown in the layers control
+   */
   public OverlayAddEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.name") String name) {

@@ -29,6 +29,11 @@ import org.vaadin.addons.componentfactory.leaflet.types.LatLngBounds;
  */
 public interface MapStateOptions extends Serializable {
 
+    /**
+     * Returns the initial geographic center of the map.
+     *
+     * @return the geographic center of the map
+     */
     LatLng getCenter();
 
     /**
@@ -38,6 +43,11 @@ public interface MapStateOptions extends Serializable {
      */
     void setCenter(LatLng center);
 
+    /**
+     * Returns the initial map zoom level.
+     *
+     * @return the initial map zoom level
+     */
     Integer getZoom();
 
     /**
@@ -62,6 +72,11 @@ public interface MapStateOptions extends Serializable {
      */
     LatLngBounds getBounds();
 
+    /**
+     * Returns the minimum zoom level of the map.
+     *
+     * @return the minimum zoom level of the map
+     */
     Integer getMinZoom();
 
     /**
@@ -73,6 +88,11 @@ public interface MapStateOptions extends Serializable {
      */
     void setMinZoom(Integer minZoom);
 
+    /**
+     * Returns the maximum zoom level of the map.
+     *
+     * @return the maximum zoom level of the map
+     */
     Integer getMaxZoom();
 
     /**
@@ -84,6 +104,11 @@ public interface MapStateOptions extends Serializable {
      */
     void setMaxZoom(Integer maxZoom);
 
+    /**
+     * Returns the geographical bounds the map view is restricted to.
+     *
+     * @return the maximum geographical bounds of the map view
+     */
     LatLngBounds getMaxBounds();
 
     /**

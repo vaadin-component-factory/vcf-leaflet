@@ -28,6 +28,10 @@ public class Icon implements BasicType {
 
     private static final String SHADOW_URL = "images/marker-shadow.png";
 
+    /**
+     * The default Leaflet marker icon, using the standard icon, retina and
+     * shadow images.
+     */
     public static Icon DEFAULT_ICON = new Icon("images/marker-icon.png", "images/marker-icon-2x.png", SHADOW_URL);
 
     private String iconUrl;
@@ -41,17 +45,43 @@ public class Icon implements BasicType {
     private Point shadowAnchor;
     private String className = "";
 
+    /**
+     * Creates an empty icon with the default size, anchor and shadow settings.
+     */
     protected Icon() {
     }
 
+    /**
+     * Creates an icon using the given image URL for the icon, the retina image and
+     * the default shadow image.
+     *
+     * @param iconUrl the URL to the icon image (absolute or relative to your script
+     *                path)
+     */
     public Icon(String iconUrl) {
         this(iconUrl, iconUrl, SHADOW_URL);
     }
 
+    /**
+     * Creates an icon using the given image URL and a square icon size.
+     *
+     * @param iconUrl the URL to the icon image (absolute or relative to your script
+     *                path)
+     * @param size    the width and height of the icon in pixels
+     */
     public Icon(String iconUrl, int size) {
         this(iconUrl, size, size);
     }
 
+    /**
+     * Creates an icon using the given image URL and icon size, deriving the anchor,
+     * popup, tooltip and shadow settings from the given width and height.
+     *
+     * @param iconUrl the URL to the icon image (absolute or relative to your script
+     *                path)
+     * @param width   the width of the icon in pixels
+     * @param height  the height of the icon in pixels
+     */
     public Icon(String iconUrl, int width, int height) {
         this(iconUrl, iconUrl, SHADOW_URL);
         setIconSize(Point.of(width, height));
@@ -61,6 +91,16 @@ public class Icon implements BasicType {
         setShadowSize(Point.of(1, width));
     }
 
+    /**
+     * Creates an icon using the given image URL, retina image URL and shadow image
+     * URL, keeping the default size and anchor settings.
+     *
+     * @param iconUrl   the URL to the icon image (absolute or relative to your
+     *                  script path)
+     * @param retinaUrl the URL to a retina-sized version of the icon image, used on
+     *                  retina-screen devices
+     * @param shadowUrl the URL to the icon shadow image
+     */
     public Icon(String iconUrl, String retinaUrl, String shadowUrl) {
         super();
         this.iconUrl = iconUrl;
@@ -68,82 +108,189 @@ public class Icon implements BasicType {
         this.shadowUrl = shadowUrl;
     }
 
+    /**
+     * Gets the URL to the icon image.
+     *
+     * @return the icon image URL
+     */
     public String getIconUrl() {
         return iconUrl;
     }
 
+    /**
+     * Sets the URL to the icon image displayed for the marker.
+     *
+     * @param iconUrl the icon image URL to set
+     */
     public void setIconUrl(String iconUrl) {
         this.iconUrl = iconUrl;
     }
 
+    /**
+     * Gets the URL to the retina-sized icon image.
+     *
+     * @return the retina icon image URL
+     */
     public String getRetinaUrl() {
         return retinaUrl;
     }
 
+    /**
+     * Sets the URL to the retina-sized icon image, used on retina-screen devices.
+     *
+     * @param retinaUrl the retina icon image URL to set
+     */
     public void setRetinaUrl(String retinaUrl) {
         this.retinaUrl = retinaUrl;
     }
 
+    /**
+     * Gets the URL to the icon shadow image.
+     *
+     * @return the icon shadow image URL
+     */
     public String getShadowUrl() {
         return shadowUrl;
     }
 
+    /**
+     * Sets the URL to the icon shadow image.
+     *
+     * @param shadowUrl the icon shadow image URL to set
+     */
     public void setShadowUrl(String shadowUrl) {
         this.shadowUrl = shadowUrl;
     }
 
+    /**
+     * Gets the size of the icon image in pixels.
+     *
+     * @return the icon size
+     */
     public Point getIconSize() {
         return iconSize;
     }
 
+    /**
+     * Sets the size of the icon image in pixels.
+     *
+     * @param iconSize the icon size to set
+     */
     public void setIconSize(Point iconSize) {
         this.iconSize = iconSize;
     }
 
+    /**
+     * Gets the coordinates of the "tip" of the icon relative to its top-left corner.
+     *
+     * @return the icon anchor point
+     */
     public Point getIconAnchor() {
         return iconAnchor;
     }
 
+    /**
+     * Sets the coordinates of the "tip" of the icon (relative to its top-left
+     * corner), which will be aligned to the marker's geographical location.
+     *
+     * @param iconAnchor the icon anchor point to set
+     */
     public void setIconAnchor(Point iconAnchor) {
         this.iconAnchor = iconAnchor;
     }
 
+    /**
+     * Gets the coordinates from which popups will "open", relative to the icon
+     * anchor.
+     *
+     * @return the popup anchor point
+     */
     public Point getPopupAnchor() {
         return popupAnchor;
     }
 
+    /**
+     * Sets the coordinates from which popups will "open", relative to the icon
+     * anchor.
+     *
+     * @param popupAnchor the popup anchor point to set
+     */
     public void setPopupAnchor(Point popupAnchor) {
         this.popupAnchor = popupAnchor;
     }
 
+    /**
+     * Gets the coordinates of the "tip" of the shadow relative to its top-left
+     * corner.
+     *
+     * @return the shadow anchor point
+     */
     public Point getShadowAnchor() {
         return shadowAnchor;
     }
 
+    /**
+     * Sets the coordinates of the "tip" of the shadow (relative to its top-left
+     * corner); defaults to the icon anchor if not specified.
+     *
+     * @param shadowAnchor the shadow anchor point to set
+     */
     public void setShadowAnchor(Point shadowAnchor) {
         this.shadowAnchor = shadowAnchor;
     }
 
+    /**
+     * Gets the size of the shadow image in pixels.
+     *
+     * @return the shadow size
+     */
     public Point getShadowSize() {
         return shadowSize;
     }
 
+    /**
+     * Sets the size of the shadow image in pixels.
+     *
+     * @param shadowSize the shadow size to set
+     */
     public void setShadowSize(Point shadowSize) {
         this.shadowSize = shadowSize;
     }
 
+    /**
+     * Gets the coordinates from which tooltips will "open", relative to the icon
+     * anchor.
+     *
+     * @return the tooltip anchor point
+     */
     public Point getTooltipAnchor() {
         return tooltipAnchor;
     }
 
+    /**
+     * Sets the coordinates from which tooltips will "open", relative to the icon
+     * anchor.
+     *
+     * @param tooltipAnchor the tooltip anchor point to set
+     */
     public void setTooltipAnchor(Point tooltipAnchor) {
         this.tooltipAnchor = tooltipAnchor;
     }
 
+    /**
+     * Gets the custom CSS class name assigned to both icon and shadow images.
+     *
+     * @return the CSS class name
+     */
     public String getClassName() {
         return className;
     }
 
+    /**
+     * Sets a custom CSS class name to assign to both the icon and shadow images.
+     *
+     * @param className the CSS class name to set
+     */
     public void setClassName(String className) {
         this.className = className;
     }

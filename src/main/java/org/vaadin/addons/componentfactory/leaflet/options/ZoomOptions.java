@@ -35,6 +35,8 @@ public class ZoomOptions implements Serializable {
     private boolean animate = true;
 
     /**
+     * Returns whether zooming is animated.
+     *
      * @return the animate
      */
     public boolean isAnimate() {

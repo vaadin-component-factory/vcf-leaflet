@@ -30,11 +30,23 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.TileEventType;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Event fired when a tile is removed (e.g. when a tile goes off the screen).
+ */
 @DomEvent("tileunload")
 public class TileUnloadEvent extends TileEvent {
 
   private static final long serialVersionUID = -225086186404225833L;
 
+  /**
+   * Creates a new tile unload event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the tile layer the event relates to
+   * @param coordsX the tile x coordinate
+   * @param coordsY the tile y coordinate
+   */
   public TileUnloadEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.coords.x") double coordsX,

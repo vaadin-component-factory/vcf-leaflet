@@ -42,6 +42,15 @@ public abstract class LayerEvent extends LeafletEvent {
   private static final long serialVersionUID = 6978303855963077536L;
   private Layer child;
 
+  /**
+   * Creates a new layer event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer
+   * @param eventType the specific layer event type
+   * @param child the layer that was added or removed
+   */
   public LayerEvent(LeafletMap source, boolean fromClient, String layerId, LayerEventType eventType,
       Layer child) {
     super(source, fromClient, layerId, eventType);

@@ -14,6 +14,9 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events.types;
 
+/**
+ * Enumeration of the popup related Leaflet event names fired when a popup is opened or closed.
+ */
 public enum PopupEventType implements LeafletEventType {
 
 	/**
@@ -26,6 +29,11 @@ public enum PopupEventType implements LeafletEventType {
 	 */
 	popupclose;
 
+	/**
+	 * Returns the Leaflet event name of this event type.
+	 *
+	 * @return the Leaflet event name
+	 */
 	@Override
 	public String getLeafletEvent() {
 		return name();

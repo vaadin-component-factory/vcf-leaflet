@@ -23,6 +23,13 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import org.vaadin.addons.componentfactory.leaflet.layer.Layer;
 
+/**
+ * Abstract base class for layers provided by the esri-leaflet plugin.
+ * <p>
+ * It loads the required {@code esri-leaflet} client-side resources and serves as
+ * the common parent for the concrete Esri layer implementations (such as
+ * {@link DynamicMapLayer}).
+ */
 @NpmPackage(value = "esri-leaflet", version = "3.0.12")
 @NpmPackage(value = "maplibre-gl", version = "3.6.2")
 @JsModule("esri-leaflet/dist/esri-leaflet.js")

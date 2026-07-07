@@ -31,11 +31,25 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.DragEventType;
 import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 
+/**
+ * Event fired repeatedly while the map is being moved (panned).
+ */
 @DomEvent("leaflet-move")
 public class MoveEvent extends BaseMoveEvent {
 
   private static final long serialVersionUID = 3795910979554884520L;
 
+  /**
+   * Creates a new move event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that moved
+   * @param newLat the latitude of the new center coordinates
+   * @param newLng the longitude of the new center coordinates
+   * @param oldLat the latitude of the previous center coordinates
+   * @param oldLng the longitude of the previous center coordinates
+   */
   public MoveEvent(LeafletMap source, boolean fromClient,
       @EventData("event.target.options.uuid") String layerId,
       @EventData("event.latlng.lat") double newLat, @EventData("event.latlng.lng") Double newLng,

@@ -30,6 +30,9 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Event fired when the map is resized, carrying the previous and the new size of the map.
+ */
 @DomEvent("resize")
 public class ResizeEvent extends LeafletEvent {
 
@@ -37,6 +40,17 @@ public class ResizeEvent extends LeafletEvent {
   private final Point oldSize;
   private final Point newSize;
 
+  /**
+   * Creates a new resize event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that was resized
+   * @param oldSizeX the horizontal size before the resize
+   * @param oldSizeY the vertical size before the resize
+   * @param newSizeX the horizontal size after the resize
+   * @param newSizeY the vertical size after the resize
+   */
   public ResizeEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.oldSize.x") double oldSizeX,

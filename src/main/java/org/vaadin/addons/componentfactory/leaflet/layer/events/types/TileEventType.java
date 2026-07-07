@@ -14,6 +14,9 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events.types;
 
+/**
+ * Enumeration of the tile related Leaflet event names fired by grid layers while loading tiles.
+ */
 public enum TileEventType implements LeafletEventType {
 
     /**
@@ -46,6 +49,11 @@ public enum TileEventType implements LeafletEventType {
      */
     load;
 
+    /**
+	 * Returns the Leaflet event name of this event type.
+	 *
+	 * @return the Leaflet event name
+	 */
     @Override
 	public String getLeafletEvent() {
 		return name();

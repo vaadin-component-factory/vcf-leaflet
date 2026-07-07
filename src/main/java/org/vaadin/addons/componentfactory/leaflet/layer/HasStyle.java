@@ -28,7 +28,18 @@ import org.vaadin.addons.componentfactory.leaflet.layer.vectors.PathOptions;
  */
 public interface HasStyle {
 
+    /**
+     * Returns the current path style options applied to this layer.
+     *
+     * @return the current style options
+     */
     PathOptions getStyle();
 
+    /**
+     * Changes the appearance of this layer by applying the given path style
+     * options.
+     *
+     * @param pathOptions the style options to apply
+     */
     void setStyle(PathOptions pathOptions);
 }

@@ -33,6 +33,10 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEventListe
 import org.vaadin.addons.componentfactory.leaflet.layer.events.ResizeEvent;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.ZoomAnimEvent;
 
+/**
+ * Mixin interface adding default methods to register listeners for map level Leaflet events such as
+ * load, move, zoom and resize on the implementing component.
+ */
 public interface SupportsMapEvents extends Evented {
 
 	/**

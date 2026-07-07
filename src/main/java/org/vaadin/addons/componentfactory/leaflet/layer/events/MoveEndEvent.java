@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 
+/**
+ * Event fired when the map has finished being moved (panned).
+ */
 @DomEvent("leaflet-moveend")
 public class MoveEndEvent extends LeafletEvent {
 
   private static final long serialVersionUID = -2488471834466464124L;
 
+  /**
+   * Creates a new move end event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that moved
+   */
   public MoveEndEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, MapEventType.moveend);

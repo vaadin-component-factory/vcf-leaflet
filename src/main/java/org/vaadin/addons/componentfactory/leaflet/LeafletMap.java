@@ -121,6 +121,11 @@ import java.util.stream.Stream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Server-side component wrapping the Leaflet interactive map. It manages the
+ * map layers, controls, options and events, and executes the corresponding
+ * function calls on the client-side Leaflet instance.
+ */
 @Tag("leaflet-map")
 @NpmPackage(value = "leaflet", version = "1.9.4")
 @JsModule("./leaflet-map.js")
@@ -159,10 +164,19 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
         UnloadEvent.class, ViewResetEvent.class, ZoomAnimEvent.class, ZoomEndEvent.class,
         ZoomEvent.class, ZoomLevelsChangeEvent.class, ZoomStartEvent.class);
 
+    /**
+     * Creates a new map using the default map options.
+     */
     public LeafletMap() {
         this(new DefaultMapOptions());
     }
 
+    /**
+     * Creates a new map configured with the given map options.
+     *
+     * @param mapOptions
+     *            the options used to initialize the map
+     */
     public LeafletMap(MapOptions mapOptions) {
         setId("template");
         optionsClass = mapOptions.getClass();
@@ -224,6 +238,13 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
       });
     }
     
+    /**
+     * Sends the registered event types to the client when the component is
+     * attached, so that the matching Leaflet listeners get bound.
+     *
+     * @param attachEvent
+     *            the attach event
+     */
     @Override
     protected void onAttach(AttachEvent attachEvent) {
       super.onAttach(attachEvent);
@@ -263,6 +284,14 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
         return this.mapLayer.getLayer(layerId).orElse(this.mapLayer);
     }
 
+    /**
+     * Recursively searches the map, including nested layer groups, for the
+     * layer with the given internal ID.
+     *
+     * @param layerId
+     *            the id of the layer to look for
+     * @return the matching layer, or the root map layer if none is found
+     */
     public Layer findLayer(String layerId) {
         return this.mapLayer.findLayer(layerId).orElse(this.mapLayer);
     }
@@ -291,6 +320,13 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
         executeJs("removeLayer", layer);
     }
 
+    /**
+     * Adds a tile layer to the map using the given URL template as the tile
+     * source.
+     *
+     * @param baseUrl
+     *            the tile layer URL template
+     */
     public void setBaseUrl(String baseUrl) {
         addLayer(new TileLayer(baseUrl));
     }
@@ -347,6 +383,18 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
         getThemeNames().addAll(Stream.of(variants).map(LeafletMapVariant::getVariantName).collect(Collectors.toList()));
     }
 
+    /**
+     * Executes the named Leaflet function on the client for the given target,
+     * without expecting a return value.
+     *
+     * @param target
+     *            the client object (map, layer or control) to invoke the
+     *            function on
+     * @param functionName
+     *            the name of the Leaflet function to call
+     * @param arguments
+     *            the arguments passed to the function
+     */
     @Override
     public void executeJs(Identifiable target, String functionName, Serializable... arguments) {
         logger.info("Execute leaflet function: {}", functionName);
@@ -354,6 +402,24 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
         getElement().callJsFunction("callLeafletFunction", JacksonUtils.beanToJson(leafletOperation));
     }
 
+    /**
+     * Calls the named Leaflet function on the client for the given target and
+     * asynchronously returns its result deserialized to the requested type.
+     *
+     * @param <T>
+     *            the type of the returned result
+     * @param target
+     *            the client object (map, layer or control) to invoke the
+     *            function on
+     * @param functionName
+     *            the name of the Leaflet function to call
+     * @param resultType
+     *            the type the client result should be deserialized to
+     * @param arguments
+     *            the arguments passed to the function
+     * @return a future completed with the function result, or {@code null} if
+     *         the map is not ready yet
+     */
     @Override
     public <T extends Serializable> CompletableFuture<T> call(Identifiable target, String functionName, Class<T> resultType, Serializable... arguments) {
         if (ready) {
@@ -374,35 +440,70 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
         }
     }
 
+    /**
+     * Registers a listener for the given Leaflet event type on the map.
+     *
+     * @param <T>
+     *            the type of the fired event
+     * @param eventType
+     *            the event type to listen for
+     * @param listener
+     *            the listener invoked when the event occurs
+     */
     @Override
     public <T extends LeafletEvent> void addEventListener(LeafletEventType eventType, LeafletEventListener<T> listener) {
         this.mapLayer.addEventListener(eventType, listener);
         this.getModel().getEvents().add(eventType);
     }
 
+    /**
+     * Returns the unique identifier of the map.
+     *
+     * @return the map uuid
+     */
     @Override
     public String getUuid() {
         return getModel().getMapOptions().getUuid();
     }
 
+    /**
+     * Removes the listeners registered for the given Leaflet event type.
+     *
+     * @param eventType
+     *            the event type to stop listening for
+     */
     @Override
     public void removeEventListener(LeafletEventType eventType) {
         this.mapLayer.removeEventListener(eventType);
         executeJs("removeEventListener", eventType.getLeafletEvent());
     }
 
+    /**
+     * Removes all event listeners registered on the map.
+     */
     @Override
     public void clearAllEventListeners() {
         this.mapLayer.clearAllEventListeners();
         executeJs("clearAllEventListeners");
     }
 
+    /**
+     * Returns whether any listener is registered for the given Leaflet event
+     * type.
+     *
+     * @param eventType
+     *            the event type to check
+     * @return {@code true} if at least one listener is registered for the event
+     *         type
+     */
     @Override
     public boolean hasEventListeners(LeafletEventType eventType) {
         return this.mapLayer.hasEventListeners(eventType);
     }
 
     /**
+     * Returns whether the map has been initialized on the client side.
+     *
      * @return the ready
      */
     public boolean isReady() {
@@ -421,6 +522,12 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
 
         private static final long serialVersionUID = 412791990495078838L;
 
+        /**
+         * Creates a new map ready event.
+         *
+         * @param source
+         *            the map that has been initialized
+         */
         public MapReadyEvent(LeafletMap source) {
             super(source, true);
         }

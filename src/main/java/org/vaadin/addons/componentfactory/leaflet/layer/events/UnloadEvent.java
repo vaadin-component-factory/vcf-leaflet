@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 
+/**
+ * Event fired when the map is destroyed with the remove method.
+ */
 @DomEvent("leaflet-unload")
 public class UnloadEvent extends LeafletEvent {
 
   private static final long serialVersionUID = -4111521969600047680L;
 
+  /**
+   * Creates a new unload event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the id of the layer that fired the event
+   */
   public UnloadEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, MapEventType.unload);

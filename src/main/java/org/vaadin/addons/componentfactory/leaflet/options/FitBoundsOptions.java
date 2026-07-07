@@ -17,6 +17,13 @@ package org.vaadin.addons.componentfactory.leaflet.options;
 import java.io.Serializable;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Options controlling the behavior of Leaflet's {@code map.fitBounds()} call.
+ * <p>
+ * They allow padding to be reserved around the map container so that overlays
+ * (such as sidebars or controls) do not obscure the fitted bounds, and let the
+ * maximum zoom level used when fitting be capped.
+ */
 public class FitBoundsOptions implements Serializable {
 
     /**
@@ -29,6 +36,8 @@ public class FitBoundsOptions implements Serializable {
     private Integer maxZoom;
 
     /**
+     * Gets the padding reserved in the top left corner of the map container.
+     *
      * @return the paddingTopLeft
      */
     public Point getPaddingTopLeft() {
@@ -48,6 +57,8 @@ public class FitBoundsOptions implements Serializable {
     }
 
     /**
+     * Gets the padding reserved in the bottom right corner of the map container.
+     *
      * @return the paddingBottomRight
      */
     public Point getPaddingBottomRight() {
@@ -64,6 +75,8 @@ public class FitBoundsOptions implements Serializable {
     }
 
     /**
+     * Gets the padding applied to both the top left and bottom right corners.
+     *
      * @return the padding
      */
     public Point getPadding() {
@@ -81,6 +94,8 @@ public class FitBoundsOptions implements Serializable {
     }
 
     /**
+     * Gets the maximum zoom level used when fitting the bounds.
+     *
      * @return the maxZoom
      */
     public Integer getMaxZoom() {

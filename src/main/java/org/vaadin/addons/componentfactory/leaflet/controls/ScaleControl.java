@@ -31,10 +31,18 @@ public class ScaleControl extends LeafletControl {
     private boolean imperial = true;
     private boolean updateWhenIdle = false;
 
+    /**
+     * Creates a new scale control.
+     */
     public ScaleControl() {
         super("scale");
     }
 
+    /**
+     * Gets the maximum width of the control in pixels.
+     *
+     * @return the maximum width of the control in pixels
+     */
     public int getMaxWidth() {
         return maxWidth;
     }
@@ -49,6 +57,12 @@ public class ScaleControl extends LeafletControl {
         this.maxWidth = maxWidth;
     }
 
+    /**
+     * Gets whether the metric scale line (m/km) is shown.
+     *
+     * @return {@code true} if the metric scale line is shown, {@code false}
+     *         otherwise
+     */
     public boolean isMetric() {
         return metric;
     }
@@ -62,6 +76,12 @@ public class ScaleControl extends LeafletControl {
         this.metric = metric;
     }
 
+    /**
+     * Gets whether the imperial scale line (mi/ft) is shown.
+     *
+     * @return {@code true} if the imperial scale line is shown, {@code false}
+     *         otherwise
+     */
     public boolean isImperial() {
         return imperial;
     }
@@ -75,6 +95,13 @@ public class ScaleControl extends LeafletControl {
         this.imperial = imperial;
     }
 
+    /**
+     * Gets whether the control is updated on moveend only rather than
+     * continuously on move.
+     *
+     * @return {@code true} if the control is updated on moveend, {@code false}
+     *         if it is updated on move
+     */
     public boolean isUpdateWhenIdle() {
         return updateWhenIdle;
     }

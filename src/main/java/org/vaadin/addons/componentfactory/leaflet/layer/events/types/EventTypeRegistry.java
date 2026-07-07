@@ -19,6 +19,9 @@ import java.util.HashMap;
 import java.util.Map;
 import org.vaadin.addons.componentfactory.leaflet.layer.Layer;
 
+/**
+ * Registry that maps Leaflet event names to their corresponding {@link LeafletEventType} constants.
+ */
 public class EventTypeRegistry {
 
     private static final Map<String, LeafletEventType> eventMap = new HashMap<>();
@@ -33,10 +36,23 @@ public class EventTypeRegistry {
         register(LocationEventType.class);
     }
 
+    /**
+     * Registers all constants of the given event type enum so they can be looked up by their
+     * Leaflet event name.
+     *
+     * @param eventType the enum class implementing {@link LeafletEventType} to register
+     * @param <T> the enum type
+     */
     public static <T extends Enum<T> & LeafletEventType> void register(Class<T> eventType) {
         EnumSet.allOf(eventType).forEach(e -> eventMap.put(e.getLeafletEvent(), e));
     }
 
+    /**
+     * Returns the registered event type matching the given Leaflet event name.
+     *
+     * @param stringValue the Leaflet event name
+     * @return the matching event type, or <code>null</code> if none is registered
+     */
     public static LeafletEventType valueOf(String stringValue) {
         return eventMap.get(stringValue);
     }

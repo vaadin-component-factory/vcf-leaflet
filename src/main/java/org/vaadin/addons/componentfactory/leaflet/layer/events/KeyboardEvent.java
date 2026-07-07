@@ -27,6 +27,11 @@ package org.vaadin.addons.componentfactory.leaflet.layer.events;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.KeyboardEventType;
 
+/**
+ * Base class for keyboard events fired by a {@link LeafletMap} when the user interacts with the
+ * keyboard while the map is focused. Holds the details of the key that triggered the event as well
+ * as the state of the modifier keys.
+ */
 public abstract class KeyboardEvent extends LeafletEvent {
 
   private static final long serialVersionUID = 1284434326828115488L;
@@ -37,6 +42,20 @@ public abstract class KeyboardEvent extends LeafletEvent {
   private final boolean shiftKey;
   private final boolean altKey;
 
+  /**
+   * Creates a new keyboard event.
+   *
+   * @param source the map that fired the event
+   * @param fromClient <code>true</code> if the event originated from the client side
+   * @param layerId the identifier of the layer the event is associated with
+   * @param eventType the type of keyboard event
+   * @param key the key value of the key represented by the event
+   * @param code the code of the key that triggered the event
+   * @param keyCode the Unicode character or key code of the key that triggered the event
+   * @param ctrlKey whether the "CTRL" key was pressed when the event was triggered
+   * @param shiftKey whether the "SHIFT" key was pressed when the event was triggered
+   * @param altKey whether the "ALT" key was pressed when the event was triggered
+   */
   public KeyboardEvent(LeafletMap source, boolean fromClient, String layerId,
       KeyboardEventType eventType, String key, String code, int keyCode, boolean ctrlKey,
       boolean shiftKey, boolean altKey) {

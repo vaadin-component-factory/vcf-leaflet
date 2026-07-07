@@ -28,11 +28,23 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.TooltipEventType;
 import org.vaadin.addons.componentfactory.leaflet.layer.ui.tooltip.Tooltip;
 
+/**
+ * Base class for the Leaflet tooltip events fired when a tooltip is opened or closed.
+ */
 public abstract class TooltipEvent extends LeafletEvent {
 
   private static final long serialVersionUID = -2605670162913154205L;
   private Tooltip tooltip;
 
+  /**
+   * Creates a new tooltip event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer the tooltip is bound to
+   * @param eventType the type of the tooltip event
+   * @param tooltip the tooltip the event relates to
+   */
   public TooltipEvent(LeafletMap source, boolean fromClient, String layerId,
       TooltipEventType eventType, Tooltip tooltip) {
     super(source, fromClient, layerId, eventType);
@@ -40,6 +52,8 @@ public abstract class TooltipEvent extends LeafletEvent {
   }
 
   /**
+   * Returns the tooltip the event relates to.
+   *
    * @return the tooltip
    */
   public Tooltip getTooltip() {

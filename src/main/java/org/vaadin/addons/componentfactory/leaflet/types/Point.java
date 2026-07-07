@@ -28,9 +28,18 @@ public class Point implements BasicType {
 	private Double x;
 	private Double y;
 
+	/**
+	 * Creates a new point at coordinates (0, 0).
+	 */
 	public Point(){
 	}
 
+	/**
+	 * Creates a new point with the given coordinates.
+	 *
+	 * @param x the x coordinate in pixels
+	 * @param y the y coordinate in pixels
+	 */
 	public Point(double x, double y) {
 		this.x = x;
 		this.y = y;
@@ -67,22 +76,49 @@ public class Point implements BasicType {
 		return Math.abs(point.x) <= Math.abs(this.x) && Math.abs(point.y) <= Math.abs(this.y);
 	}
 
+	/**
+	 * Returns the x coordinate in pixels.
+	 *
+	 * @return the x coordinate
+	 */
 	public double getX() {
 		return x;
 	}
 
+	/**
+	 * Sets the x coordinate in pixels.
+	 *
+	 * @param x the x coordinate to set
+	 */
 	public void setX(double x) {
 		this.x = x;
 	}
 
+	/**
+	 * Returns the y coordinate in pixels.
+	 *
+	 * @return the y coordinate
+	 */
 	public double getY() {
 		return y;
 	}
 
+	/**
+	 * Sets the y coordinate in pixels.
+	 *
+	 * @param y the y coordinate to set
+	 */
 	public void setY(double y) {
 		this.y = y;
 	}
 
+	/**
+	 * Creates a new point with the given coordinates.
+	 *
+	 * @param x the x coordinate in pixels
+	 * @param y the y coordinate in pixels
+	 * @return a new point at the given coordinates
+	 */
 	public static Point of(double x, double y) {
 		return new Point(x, y);
 	}

@@ -26,6 +26,11 @@ package org.vaadin.addons.componentfactory.leaflet.layer.map.options;
  */
 public interface TouchInteractionOptions {
 
+    /**
+     * Returns whether the mobile tap hacks are enabled.
+     *
+     * @return {@code true} if the tap hacks are enabled
+     */
     boolean isTap();
 
     /**
@@ -36,6 +41,12 @@ public interface TouchInteractionOptions {
      */
     void setTap(boolean tap);
 
+    /**
+     * Returns the max number of pixels a user can shift a finger during touch for it
+     * to still be considered a valid tap.
+     *
+     * @return the tap tolerance in pixels
+     */
     int getTapTolerance();
 
     /**
@@ -47,6 +58,12 @@ public interface TouchInteractionOptions {
      */
     void setTaptolerance(int tapTolerance);
 
+    /**
+     * Returns whether the map can be zoomed by touch-dragging with two fingers.
+     *
+     * @return the touch zoom setting, or {@code "center"} to zoom to the center of
+     *         the view
+     */
     String getTouchZoom();
 
     /**
@@ -60,6 +77,12 @@ public interface TouchInteractionOptions {
      */
     void setTouchZoom(String touchZoom);
 
+    /**
+     * Returns whether the map bounces back when pinch-zooming beyond the min/max
+     * zoom limits.
+     *
+     * @return {@code true} if the map bounces at the zoom limits
+     */
     boolean isBounceAtZoomLimits();
 
     /**

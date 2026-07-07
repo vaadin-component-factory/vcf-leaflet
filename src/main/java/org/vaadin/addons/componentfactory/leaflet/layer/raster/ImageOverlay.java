@@ -33,8 +33,14 @@ import org.vaadin.addons.componentfactory.leaflet.types.LatLngBounds;
  */
 public class ImageOverlay extends InteractiveLayer {
 
+    /**
+     * The event types fired by an {@link ImageOverlay}.
+     */
     public static enum Events implements LeafletEventType {
-        load, error;
+        /** Fired when the image overlay has finished loading its image. */
+        load,
+        /** Fired when the image overlay fails to load its image. */
+        error;
     }
 
     private static final long serialVersionUID = 4991481613331548678L;
@@ -80,6 +86,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the URL of the image displayed by this overlay.
+     *
      * @return the imageUrl
      */
     public String getImageUrl() {
@@ -87,6 +95,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the opacity of the image overlay.
+     *
      * @return the opacity
      */
     public double getOpacity() {
@@ -103,6 +113,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the text used for the alt attribute of the image.
+     *
      * @return the alt
      */
     public String getAlt() {
@@ -119,6 +131,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the crossOrigin attribute value applied to the image.
+     *
      * @return the crossOrigin
      */
     public String getCrossOrigin() {
@@ -138,6 +152,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the URL of the image shown when the overlay image fails to load.
+     *
      * @return the errorOverlayUrl
      */
     public String getErrorOverlayUrl() {
@@ -154,6 +170,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the explicit zIndex of the overlay layer.
+     *
      * @return the zIndex
      */
     public int getzIndex() {
@@ -170,6 +188,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the custom class name assigned to the image.
+     *
      * @return the className
      */
     public String getClassName() {
@@ -186,6 +206,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Gets the geographical bounds the image is tied to.
+     *
      * @return the bounds
      */
     public LatLngBounds getBounds() {
@@ -193,6 +215,8 @@ public class ImageOverlay extends InteractiveLayer {
     }
 
     /**
+     * Sets the geographical bounds the image is tied to.
+     *
      * @param bounds the bounds to set
      */
     public void setBounds(LatLngBounds bounds) {

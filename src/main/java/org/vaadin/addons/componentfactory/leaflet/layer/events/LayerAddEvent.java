@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.LayerEventType;
 
+/**
+ * Event fired when a new layer is added to the map.
+ */
 @DomEvent("layeradd")
 public class LayerAddEvent extends LayerEvent {
 
   private static final long serialVersionUID = 1541515694999130479L;
 
+  /**
+   * Creates a new layer add event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that was added
+   */
   public LayerAddEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, LayerEventType.layeradd, null);

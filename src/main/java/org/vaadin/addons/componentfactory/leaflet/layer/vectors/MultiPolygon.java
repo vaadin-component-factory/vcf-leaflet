@@ -29,24 +29,42 @@ public class MultiPolygon extends Polygon {
 
     private MultiPolygonStructure latlngs;
 
+    /**
+     * Instantiates a multi polygon from the given structure of coordinates.
+     *
+     * @param latlngs the structure holding the coordinates of each polygon
+     */
     public MultiPolygon(MultiPolygonStructure latlngs) {
         this.latlngs = latlngs;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLeafletType() {
         return Polygon.class.getSimpleName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MultiPolygonStructure getLatlngs() {
         return latlngs;
     }
 
+    /**
+     * A geometry structure holding the coordinates of several polygons, each
+     * represented by a {@link MultiLatLngArray}.
+     */
     public static class MultiPolygonStructure extends ArrayList<MultiLatLngArray> implements GeometryStructure {
 
         private static final long serialVersionUID = -8597806785233271725L;
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public LatLngBounds getBounds() {
             LatLngBounds bounds = new LatLngBounds();

@@ -14,7 +14,17 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events;
 
+/**
+ * Listener that is notified when a {@link LeafletEvent} of the given type is fired.
+ *
+ * @param <T> the type of the Leaflet event handled by this listener
+ */
 @FunctionalInterface
 public interface LeafletEventListener<T extends LeafletEvent> {
+    /**
+     * Invoked when the listened event is fired.
+     *
+     * @param event the fired event
+     */
     void handleEvent(T event);
 }

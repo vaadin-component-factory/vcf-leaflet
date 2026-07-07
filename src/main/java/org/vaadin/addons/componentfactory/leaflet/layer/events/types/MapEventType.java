@@ -14,6 +14,9 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events.types;
 
+/**
+ * Enumeration of the map level Leaflet event names, such as load, move, zoom and resize.
+ */
 public enum MapEventType implements LeafletEventType {
 
 	/**
@@ -84,6 +87,11 @@ public enum MapEventType implements LeafletEventType {
 	 */
 	moveend;
 
+	/**
+	 * Returns the Leaflet event name of this event type.
+	 *
+	 * @return the Leaflet event name
+	 */
 	@Override
 	public String getLeafletEvent() {
 		return name();

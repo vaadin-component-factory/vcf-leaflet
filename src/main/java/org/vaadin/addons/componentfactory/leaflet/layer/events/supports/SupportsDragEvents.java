@@ -26,6 +26,10 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEvent;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEventListener;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.MoveEvent;
 
+/**
+ * Mixin interface adding default methods to register listeners for drag and move related Leaflet
+ * events on the implementing component.
+ */
 public interface SupportsDragEvents extends Evented {
 
 	/**

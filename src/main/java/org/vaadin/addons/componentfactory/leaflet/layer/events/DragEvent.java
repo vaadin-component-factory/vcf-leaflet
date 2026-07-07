@@ -30,11 +30,26 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.DragEventType;
 import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 
+/**
+ * Event fired repeatedly while the user drags a marker or layer, carrying the previous and the
+ * current coordinates.
+ */
 @DomEvent("drag")
 public class DragEvent extends BaseMoveEvent {
 
   private static final long serialVersionUID = -4474984908398448720L;
 
+  /**
+   * Creates a new drag event.
+   *
+   * @param source the component that fired the event
+   * @param fromClient <code>true</code> if the event originated from the client side
+   * @param layerId the identifier of the layer being dragged
+   * @param newLat the latitude of the new coordinates
+   * @param newLng the longitude of the new coordinates
+   * @param oldLat the latitude of the previous coordinates
+   * @param oldLng the longitude of the previous coordinates
+   */
   public DragEvent(LeafletMap source, boolean fromClient,
       @EventData("event.target.options.uuid") String layerId,
       @EventData("event.latlng.lat") Double newLat, @EventData("event.latlng.lng") Double newLng,

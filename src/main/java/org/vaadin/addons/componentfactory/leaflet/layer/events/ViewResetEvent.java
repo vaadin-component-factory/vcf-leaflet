@@ -24,11 +24,22 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 
+/**
+ * Event fired when the map needs to redraw its content, for example after a zoom or when the map
+ * size changes.
+ */
 @DomEvent("leaflet-viewreset")
 public class ViewResetEvent extends LeafletEvent {
 
   private static final long serialVersionUID = -4889975038367377820L;
 
+  /**
+   * Creates a new view reset event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that was reset
+   */
   public ViewResetEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, MapEventType.viewreset);

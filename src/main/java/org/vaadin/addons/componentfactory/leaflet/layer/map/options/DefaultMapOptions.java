@@ -87,353 +87,576 @@ public class DefaultMapOptions implements MapOptions {
     private String touchZoom;
     private boolean bounceAtZoomLimits = true;
 
+    /**
+     * Creates a new set of map options initialized with the Leaflet default values
+     * and a randomly generated unique identifier.
+     */
     public DefaultMapOptions() {
         uuid = UUID.randomUUID().toString();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public LatLng getCenter() {
         return center;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setCenter(LatLng center) {
         this.center = center;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Integer getZoom() {
         return zoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setZoom(Integer zoom) {
         this.zoom = zoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isZoomAnimation() {
         return this.zoomAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setZoomAnimation(boolean zoomAnimation) {
         this.zoomAnimation = zoomAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public LatLngBounds getBounds() {
         return bounds;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setBounds(LatLngBounds bounds) {
         this.bounds = bounds;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isPreferCanvas() {
         return preferCanvas;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setPreferCanvas(boolean preferCanvas) {
         this.preferCanvas = preferCanvas;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Integer getMinZoom() {
         return this.minZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setMinZoom(Integer minZoom) {
         this.minZoom = minZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Integer getMaxZoom() {
         return this.maxZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setMaxZoom(Integer maxZoom) {
         this.maxZoom = maxZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isAttributionControl() {
         return attributionControl;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setAttributionControl(boolean attributionControl) {
         this.attributionControl = attributionControl;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isZoomControl() {
         return zoomControl;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setZoomControl(boolean zoomControl) {
         this.zoomControl = zoomControl;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUuid() {
         return this.uuid;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public LatLngBounds getMaxBounds() {
         return this.maxBounds;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setMaxBounds(LatLngBounds maxBounds) {
         this.maxBounds = maxBounds;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isClosePopupOnClick() {
         return this.closePopupOnClick;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setClosePopupOnClick(boolean closePopupOnClick) {
         this.closePopupOnClick = closePopupOnClick;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getZoomSnap() {
         return this.zoomSnap;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setZoomSnap(double zoomSnap) {
         this.zoomSnap = zoomSnap;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getZoomDelta() {
         return this.zoomDelta;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setZoomDelta(double zoomDelta) {
         this.zoomDelta = zoomDelta;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTrackResize() {
         return trackResize;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTrackResize(boolean trackResize) {
         this.trackResize = trackResize;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isBoxZoom() {
         return this.boxZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBoxZoom(boolean boxZoom) {
         this.boxZoom = boxZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isDoubleClickZoom() {
         return this.doubleClickZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setDoubleClickZoom(boolean doubleClickZoom) {
         this.doubleClickZoom = doubleClickZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isDragging() {
         return this.dragging;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setDragging(boolean dragging) {
         this.dragging = dragging;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isKeyboard() {
         return this.keyboard;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setKeyboard(boolean keyboard) {
         this.keyboard = keyboard;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getKeyboardPanDelta() {
         return this.keyboardPanDelta;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setKeyboardPanDelta(double keyboardPanDelta) {
         this.keyboardPanDelta = keyboardPanDelta;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getZoomAnimationThreshold() {
         return this.zoomAnimationThreshold;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setZoomAnimationThreshold(double zoomAnimationThreshold) {
         this.zoomAnimationThreshold = zoomAnimationThreshold;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isFadeAnimation() {
         return this.fadeAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setFadeAnimation(boolean fadeAnimation) {
         this.fadeAnimation = fadeAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isMarkerZoomAnimation() {
         return this.markerZoomAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setMarkerZoomAnimation(boolean markerZoomAnimation) {
         this.markerZoomAnimation = markerZoomAnimation;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getTransform3DLimit() {
         return this.transform3DLimit;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTransform3DLimit(double transform3dLimit) {
         this.transform3DLimit = transform3dLimit;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTap() {
         return this.tap;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTap(boolean tap) {
         this.tap = tap;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getTapTolerance() {
         return this.tapTolerance;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTaptolerance(int tapTolerance) {
         this.tapTolerance = tapTolerance;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getTouchZoom() {
         return touchZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setTouchZoom(String touchZoom) {
         this.touchZoom = touchZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isBounceAtZoomLimits() {
         return this.bounceAtZoomLimits;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setBounceAtZoomLimits(boolean bounceAtZoomLimits) {
         this.bounceAtZoomLimits = bounceAtZoomLimits;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isInertia() {
         return this.interia;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setInertia(boolean interia) {
         this.interia = interia;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getInertiaDeceleration() {
         return this.inertiaDeceleration;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setInertiaDeceleration(double inertiaDeceleration) {
         this.inertiaDeceleration = inertiaDeceleration;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getInertiaMaxSpeed() {
         return this.inertiaMaxSpeed;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setInertiaMaxSpeed(double inertiaMaxSpeed) {
         this.inertiaMaxSpeed = inertiaMaxSpeed;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getEaseLinearity() {
         return this.easeLinearity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setEaseLinearity(double easeLinearity) {
         this.easeLinearity = easeLinearity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isWorldCopyJump() {
         return this.worldCopyJump;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setWorldCopyJump(boolean worldCopyJump) {
         this.worldCopyJump = worldCopyJump;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getMaxBoundsViscosity() {
         return this.maxBoundsViscosity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setMaxBoundsViscosity(double maxBoundsViscosity) {
         this.maxBoundsViscosity = maxBoundsViscosity;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isScrollWheelZoom() {
         return scrollWheelZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setScrollWheelZoom(boolean scrollWheelZoom) {
         this.scrollWheelZoom = scrollWheelZoom;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getWheelDebounceTime() {
         return this.wheelDebounceTime;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setWheelDebounceTime(double wheelDebounceTime) {
         this.wheelDebounceTime = wheelDebounceTime;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getWheelPxPerZoomLevel() {
         return this.wheelPxPerZoomLevel;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setWheelPxPerZoomLevel(double wheelPxPerZoomLevel) {
         this.wheelPxPerZoomLevel = wheelPxPerZoomLevel;

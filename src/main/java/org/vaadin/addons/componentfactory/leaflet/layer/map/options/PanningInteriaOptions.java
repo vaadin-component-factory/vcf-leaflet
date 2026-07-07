@@ -27,6 +27,11 @@ import java.io.Serializable;
  */
 public interface PanningInteriaOptions extends Serializable {
 
+    /**
+     * Returns whether panning of the map has an inertia effect.
+     *
+     * @return {@code true} if panning inertia is enabled
+     */
     boolean isInertia();
 
     /**
@@ -40,6 +45,12 @@ public interface PanningInteriaOptions extends Serializable {
      */
     void setInertia(boolean inertia);
 
+    /**
+     * Returns the rate with which the inertial movement slows down, in
+     * pixels/second².
+     *
+     * @return the inertia deceleration
+     */
     double getInertiaDeceleration();
 
     /**
@@ -49,6 +60,11 @@ public interface PanningInteriaOptions extends Serializable {
      */
     void setInertiaDeceleration(double inertiaDeceleration);
 
+    /**
+     * Returns the maximum speed of the inertial movement, in pixels/second.
+     *
+     * @return the maximum speed of the inertial movement
+     */
     double getInertiaMaxSpeed();
 
     /**
@@ -58,10 +74,26 @@ public interface PanningInteriaOptions extends Serializable {
      */
     void setInertiaMaxSpeed(double inertiaMaxSpeed);
 
+    /**
+     * Returns the easing linearity applied to inertial panning animations.
+     *
+     * @return the ease linearity value
+     */
     double getEaseLinearity();
 
+    /**
+     * Sets the easing linearity applied to inertial panning animations.
+     *
+     * @param easeLinearity the ease linearity value
+     */
     void setEaseLinearity(double easeLinearity);
 
+    /**
+     * Returns whether the map jumps back to the original "copy" of the world when
+     * panning across the antimeridian.
+     *
+     * @return {@code true} if world copy jump is enabled
+     */
     boolean isWorldCopyJump();
 
     /**
@@ -74,6 +106,11 @@ public interface PanningInteriaOptions extends Serializable {
      */
     void setWorldCopyJump(boolean worldCopyJump);
 
+    /**
+     * Returns how solid the max bounds are when dragging the map around.
+     *
+     * @return the maximum bounds viscosity
+     */
     double getMaxBoundsViscosity();
 
     /**

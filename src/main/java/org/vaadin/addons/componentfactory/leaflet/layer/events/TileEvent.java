@@ -28,11 +28,24 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.TileEventType;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Base class for the Leaflet tile lifecycle events (tileloadstart, tileload, tileunload and
+ * tileerror), carrying the coordinates of the tile the event relates to.
+ */
 public abstract class TileEvent extends LeafletEvent {
 
   private static final long serialVersionUID = 3783813732147214444L;
   private final Point coords;
 
+  /**
+   * Creates a new tile event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the tile layer the event relates to
+   * @param eventType the type of the tile event
+   * @param coords the tile coordinates (x, y and z zoom level)
+   */
   public TileEvent(LeafletMap source, boolean fromClient, String layerId, TileEventType eventType,
       Point coords) {
     super(source, fromClient, layerId, eventType);

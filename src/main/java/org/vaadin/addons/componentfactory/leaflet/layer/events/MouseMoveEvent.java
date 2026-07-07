@@ -28,12 +28,28 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MouseEventT
 import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Event fired when the mouse moves over the map or a layer.
+ */
 @DomEvent(value = "leaflet-mousemove",
     debounce = @DebounceSettings(timeout = 250, phases = DebouncePhase.INTERMEDIATE))
 public class MouseMoveEvent extends MouseEvent {
 
   private static final long serialVersionUID = 8846922934384639771L;
 
+  /**
+   * Creates a new mouse move event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the id of the layer that fired the event
+   * @param latitude the latitude of the point where the event occurred
+   * @param longitude the longitude of the point where the event occurred
+   * @param layerPointX the x pixel coordinate relative to the map layer
+   * @param layerPointY the y pixel coordinate relative to the map layer
+   * @param containerPointX the x pixel coordinate relative to the map container
+   * @param containerPointY the y pixel coordinate relative to the map container
+   */
   public MouseMoveEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.latlng.lat") double latitude,

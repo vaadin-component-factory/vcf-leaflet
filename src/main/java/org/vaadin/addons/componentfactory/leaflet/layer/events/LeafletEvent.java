@@ -39,6 +39,14 @@ public class LeafletEvent extends ComponentEvent<LeafletMap> {
 
   private final LeafletEventType type;
 
+  /**
+   * Creates a new Leaflet event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the id of the layer that fired the event
+   * @param type the event type
+   */
   public LeafletEvent(LeafletMap source, boolean fromClient, String layerId,
       LeafletEventType type) {
     super(source, fromClient);

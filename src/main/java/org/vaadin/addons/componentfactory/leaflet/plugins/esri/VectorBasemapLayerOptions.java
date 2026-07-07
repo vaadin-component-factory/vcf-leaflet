@@ -24,6 +24,15 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Configuration options for a {@link VectorBasemapLayer}.
+ * <p>
+ * These options mirror the settings accepted by the esri-leaflet-vector
+ * {@code vectorBasemapLayer} and control authentication and localization of the
+ * requested ArcGIS vector basemap (API key or token, style version, language,
+ * worldview, and places). The ArcGIS {@code apiKey} is required and therefore a
+ * constructor argument.
+ */
 @Getter
 @Setter
 @RequiredArgsConstructor

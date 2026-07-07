@@ -14,6 +14,9 @@
 
 package org.vaadin.addons.componentfactory.leaflet.layer.events.types;
 
+/**
+ * Enumeration of the tooltip related Leaflet event names fired when a tooltip is opened or closed.
+ */
 public enum TooltipEventType implements LeafletEventType {
 
 	/**
@@ -26,6 +29,11 @@ public enum TooltipEventType implements LeafletEventType {
 	 */
 	tooltipclose;
 
+	/**
+	 * Returns the Leaflet event name of this event type.
+	 *
+	 * @return the Leaflet event name
+	 */
 	@Override
 	public String getLeafletEvent() {
 		return name();

@@ -26,11 +26,27 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MouseEventT
 import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Event fired when the user releases a mouse button on the map or a layer.
+ */
 @DomEvent("leaflet-mouseup")
 public class MouseUpEvent extends MouseEvent {
 
   private static final long serialVersionUID = -1206175999522529677L;
 
+  /**
+   * Creates a new mouse up event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the id of the layer that fired the event
+   * @param latitude the latitude of the point where the event occurred
+   * @param longitude the longitude of the point where the event occurred
+   * @param layerPointX the x pixel coordinate relative to the map layer
+   * @param layerPointY the y pixel coordinate relative to the map layer
+   * @param containerPointX the x pixel coordinate relative to the map container
+   * @param containerPointY the y pixel coordinate relative to the map container
+   */
   public MouseUpEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.latlng.lat") double latitude,

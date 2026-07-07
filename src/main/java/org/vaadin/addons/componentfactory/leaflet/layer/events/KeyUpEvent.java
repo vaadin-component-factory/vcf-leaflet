@@ -24,11 +24,28 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.KeyboardEventType;
 
+/**
+ * Event fired by a {@link LeafletMap} when the user releases a key from the keyboard while the map
+ * is focused.
+ */
 @DomEvent("leaflet-keyup")
 public class KeyUpEvent extends KeyboardEvent {
 
   private static final long serialVersionUID = -7626762301905298636L;
 
+  /**
+   * Creates a new key up event.
+   *
+   * @param source the map that fired the event
+   * @param fromClient <code>true</code> if the event originated from the client side
+   * @param layerId the identifier of the layer the event is associated with
+   * @param key the key value of the key represented by the event
+   * @param code the code of the key that triggered the event
+   * @param keyCode the key code of the key that triggered the event
+   * @param shiftKey whether the "SHIFT" key was pressed when the event was triggered
+   * @param altKey whether the "ALT" key was pressed when the event was triggered
+   * @param ctrlKey whether the "CTRL" key was pressed when the event was triggered
+   */
   public KeyUpEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
       @EventData("event.detail.originalEvent.key") String key,

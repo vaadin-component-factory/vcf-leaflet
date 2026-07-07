@@ -35,6 +35,11 @@ public abstract class DivOverlay extends Layer {
     private String className = "";
     private Point offset = Point.of(0, 7);
 
+    /**
+     * Creates a new overlay with the given HTML content.
+     *
+     * @param content the HTML content of the overlay
+     */
     protected DivOverlay(String content) {
         this.content = content;
     }
@@ -48,6 +53,11 @@ public abstract class DivOverlay extends Layer {
         return className;
     }
 
+    /**
+     * Sets a custom CSS class name to assign to the overlay.
+     *
+     * @param className the CSS class name to assign to the overlay
+     */
     public void setClassName(String className) {
         this.className = className;
     }
@@ -62,6 +72,12 @@ public abstract class DivOverlay extends Layer {
         return offset;
     }
 
+    /**
+     * Sets the offset of the overlay position. Useful to control the anchor of
+     * the overlay when opening it.
+     *
+     * @param offset the offset of the overlay position
+     */
     public void setOffset(Point offset) {
         this.offset = offset;
     }

@@ -28,11 +28,23 @@ import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.PopupEventType;
 import org.vaadin.addons.componentfactory.leaflet.layer.ui.popup.Popup;
 
+/**
+ * Base class for the Leaflet popup events fired when a popup is opened or closed.
+ */
 public abstract class PopupEvent extends LeafletEvent {
 
   private static final long serialVersionUID = 4647459118161849579L;
   private Popup popup;
 
+  /**
+   * Creates a new popup event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer the popup is bound to
+   * @param eventType the type of the popup event
+   * @param popup the popup the event relates to
+   */
   public PopupEvent(LeafletMap source, boolean fromClient, String layerId, PopupEventType eventType,
       Popup popup) {
     super(source, fromClient, layerId, eventType);
@@ -40,6 +52,8 @@ public abstract class PopupEvent extends LeafletEvent {
   }
 
   /**
+   * Returns the popup the event relates to.
+   *
    * @return the popup
    */
   public Popup getPopup() {

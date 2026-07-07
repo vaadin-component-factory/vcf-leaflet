@@ -51,6 +51,17 @@ public class LeafletOperation implements Serializable {
             .changeDefaultPropertyInclusion(incl -> incl.withValueInclusion(Include.NON_NULL))
             .build();
 
+    /**
+     * Creates a new operation describing a client-side function call on the
+     * given target.
+     *
+     * @param target
+     *            the client object (layer or control) the function is called on
+     * @param functionName
+     *            the name of the function to invoke
+     * @param arguments
+     *            the arguments passed to the function
+     */
     public LeafletOperation(Identifiable target, String functionName, Serializable... arguments) {
         this.layerId = target.getUuid();
         this.functionName = functionName;
@@ -59,6 +70,8 @@ public class LeafletOperation implements Serializable {
     }
 
     /**
+     * Returns the id of the target layer the function is called on.
+     *
      * @return the layerId
      */
     public String getLayerId() {
@@ -66,18 +79,27 @@ public class LeafletOperation implements Serializable {
     }
 
     /**
+     * Returns the name of the function to invoke on the client side.
+     *
      * @return the functionName
      */
     public String getFunctionName() {
         return functionName;
     }
-    
-    
+
+
+    /**
+     * Returns whether the operation targets a control rather than a layer.
+     *
+     * @return {@code true} if the target is a control
+     */
     public boolean isControlOperation() {
         return controlOperation;
     }
 
     /**
+     * Returns the operation arguments serialized to JSON.
+     *
      * @return the arguments
      */
     public String getArguments() {

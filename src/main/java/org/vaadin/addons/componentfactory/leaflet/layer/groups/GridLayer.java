@@ -34,8 +34,23 @@ public class GridLayer extends Layer {
 
     private static final long serialVersionUID = -228368014425536804L;
 
+    /**
+     * The event types fired by a {@link GridLayer} during the loading and
+     * unloading of its tiles.
+     */
     public static enum Events implements LeafletEventType {
-        load, tileunload, tileloadstart, tileerror, tileload, loading;
+        /** Fired when the grid layer loaded all visible tiles. */
+        load,
+        /** Fired when a tile is removed (e.g. when a tile goes off the screen). */
+        tileunload,
+        /** Fired when a tile is requested and starts loading. */
+        tileloadstart,
+        /** Fired when there is an error loading a tile. */
+        tileerror,
+        /** Fired when a tile loads. */
+        tileload,
+        /** Fired when the grid layer starts loading tiles. */
+        loading;
     }
 
     private int tileSize = 256;
@@ -53,6 +68,9 @@ public class GridLayer extends Layer {
     private String className;
     private int keepBuffer = 2;
 
+    /**
+     * Creates a new grid layer rendered in the map's {@code tilePane}.
+     */
     public GridLayer() {
         super();
         setPane("tilePane");
@@ -113,6 +131,8 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the width and height of tiles in the grid.
+     *
      * @return the tileSize
      */
     public int getTileSize() {
@@ -129,6 +149,8 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the opacity of the tiles.
+     *
      * @return the opacity
      */
     public double getOpacity() {
@@ -145,6 +167,8 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets whether new tiles are loaded only when panning ends.
+     *
      * @return the updateWhenIdle
      */
     public boolean isUpdateWhenIdle() {
@@ -164,6 +188,9 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets whether the grid layer is updated on every integer zoom level during a
+     * smooth zoom animation.
+     *
      * @return the updateWhenZooming
      */
     public boolean isUpdateWhenZooming() {
@@ -182,6 +209,9 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the minimum interval, in milliseconds, between tile updates while
+     * panning.
+     *
      * @return the updateInterval
      */
     public int getUpdateInterval() {
@@ -199,6 +229,8 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the explicit zIndex of the tile layer.
+     *
      * @return the zIndex
      */
     public int getzIndex() {
@@ -215,6 +247,8 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the geographical bounds outside of which tiles are not loaded.
+     *
      * @return the bounds
      */
     public LatLngBounds getBounds() {
@@ -231,6 +265,9 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the minimum zoom level down to which this layer is displayed
+     * (inclusive).
+     *
      * @return the minZoom
      */
     public Integer getMinZoom() {
@@ -248,6 +285,8 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the maximum zoom level up to which this layer is displayed (inclusive).
+     *
      * @return the maxZoom
      */
     public Integer getMaxZoom() {
@@ -300,6 +339,8 @@ public class GridLayer extends Layer {
     // }
 
     /**
+     * Gets whether the layer is prevented from wrapping around the antimeridian.
+     *
      * @return the noWrap
      */
     public boolean isNoWrap() {
@@ -319,6 +360,8 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the custom class name assigned to the tile layer.
+     *
      * @return the className
      */
     public String getClassName() {
@@ -335,6 +378,9 @@ public class GridLayer extends Layer {
     }
 
     /**
+     * Gets the number of rows and columns of tiles kept before unloading them when
+     * panning.
+     *
      * @return the keepBuffer
      */
     public int getKeepBuffer() {

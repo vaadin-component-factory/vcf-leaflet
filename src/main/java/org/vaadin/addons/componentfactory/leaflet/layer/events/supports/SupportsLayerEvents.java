@@ -21,6 +21,10 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.Evented;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.LeafletEventListener;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.LocationEvent;
 
+/**
+ * Mixin interface adding default methods to register listeners for layer add and remove Leaflet
+ * events on the implementing component.
+ */
 public interface SupportsLayerEvents extends Evented {
 
 	/**

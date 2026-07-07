@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 
+/**
+ * Event fired when the map starts changing its zoom level.
+ */
 @DomEvent("leaflet-zoomstart")
 public class ZoomStartEvent extends LeafletEvent {
 
   private static final long serialVersionUID = 7917603350686483193L;
 
+  /**
+   * Creates a new zoom start event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the identifier of the layer that zoomed
+   */
   public ZoomStartEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, MapEventType.zoomstart);

@@ -28,6 +28,12 @@ import org.vaadin.addons.componentfactory.leaflet.layer.Identifiable;
 public interface MapOptions extends MapStateOptions, InteractionOptions, KeyboardNavigationOptions, AnimationOptions,
         ControlOptions, TouchInteractionOptions, PanningInteriaOptions, MousewheelOptions, Identifiable {
 
+    /**
+     * Returns whether Paths are rendered on a Canvas renderer instead of the default
+     * SVG renderer.
+     *
+     * @return {@code true} if Paths are rendered on a Canvas renderer
+     */
     boolean isPreferCanvas();
 
     /**

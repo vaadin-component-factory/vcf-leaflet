@@ -25,6 +25,15 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * Configuration options for a {@link DynamicMapLayer}.
+ * <p>
+ * These options mirror the settings accepted by the esri-leaflet
+ * {@code dynamicMapLayer} and control how the ArcGIS dynamic map service is
+ * requested and rendered (image format, transparency, visible layers, zoom
+ * range, authentication, caching, and so on). The service {@code url} is
+ * required and therefore a constructor argument.
+ */
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -50,6 +59,12 @@ public class DynamicMapLayerOptions implements Serializable {
   private String proxy;
   private boolean useCors = true;
 
+  /**
+   * Definition filter applied to a single sub-layer of the dynamic map service.
+   * <p>
+   * It associates a layer index with a SQL {@code query} (where clause) used to
+   * restrict the features rendered for that layer.
+   */
   @AllArgsConstructor
   @Getter
   public static class LayerDef implements Serializable {

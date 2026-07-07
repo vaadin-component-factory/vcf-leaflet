@@ -29,6 +29,11 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MouseEventT
 import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 import org.vaadin.addons.componentfactory.leaflet.types.Point;
 
+/**
+ * Base class for all Leaflet mouse events. Besides the properties inherited from
+ * {@link LeafletEvent}, a mouse event also carries the geographical and pixel coordinates of the
+ * point where the interaction occurred.
+ */
 public abstract class MouseEvent extends LeafletEvent {
 
   private static final long serialVersionUID = 833702270303187505L;
@@ -36,6 +41,19 @@ public abstract class MouseEvent extends LeafletEvent {
   private final Point layerPoint;
   private final LatLng latLng;
 
+  /**
+   * Creates a new mouse event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the id of the layer that fired the event
+   * @param eventType the type of the mouse event
+   * @param latLng the geographical point where the mouse event occurred
+   * @param layerPoint the pixel coordinates of the point where the mouse event occurred relative to
+   *        the map layer
+   * @param containerPoint the pixel coordinates of the point where the mouse event occurred relative
+   *        to the map container
+   */
   public MouseEvent(LeafletMap source, boolean fromClient, String layerId, MouseEventType eventType,
       LatLng latLng, Point layerPoint, Point containerPoint) {
     super(source, fromClient, layerId, eventType);

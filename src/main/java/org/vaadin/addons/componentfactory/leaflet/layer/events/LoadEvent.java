@@ -24,11 +24,21 @@ import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.MapEventType;
 
+/**
+ * Event fired when the map is loaded and initialized with a view (center and zoom).
+ */
 @DomEvent("leaflet-load")
 public class LoadEvent extends LeafletEvent {
 
   private static final long serialVersionUID = -553678490999960858L;
 
+  /**
+   * Creates a new load event.
+   *
+   * @param source the source component
+   * @param fromClient <code>true</code> if the event originated on the client side
+   * @param layerId the id of the layer that fired the event
+   */
   public LoadEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId) {
     super(source, fromClient, layerId, MapEventType.load);

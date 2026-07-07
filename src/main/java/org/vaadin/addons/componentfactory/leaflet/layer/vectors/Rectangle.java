@@ -24,10 +24,22 @@ public class Rectangle extends Polygon {
 
     private static final long serialVersionUID = -1163695901226058734L;
 
+    /**
+     * Instantiates a rectangle from the given geographical points defining its
+     * corners.
+     *
+     * @param latlngs the geographical points defining the rectangle
+     */
     public Rectangle(LatLng... latlngs) {
         super(latlngs);
     }
 
+    /**
+     * Instantiates a rectangle from the given list of geographical points defining
+     * its corners.
+     *
+     * @param latlngs the geographical points defining the rectangle
+     */
     public Rectangle(List<LatLng> latlngs) {
         super(latlngs);
     }

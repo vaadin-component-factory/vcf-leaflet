@@ -16,6 +16,10 @@ package org.vaadin.addons.componentfactory.leaflet.layer.map.functions;
 
 import org.vaadin.addons.componentfactory.leaflet.options.LocateOptions;
 
+/**
+ * Exposes the Leaflet geolocation methods of the map, allowing the user's
+ * location to be detected and tracked via the browser Geolocation API.
+ */
 public interface GeolocationFunctions extends ExecutableFunctions {
 
     /**
