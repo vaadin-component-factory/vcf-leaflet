@@ -1,6 +1,5 @@
 package org.vaadin.addons.componentfactory.leaflet;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Arrays;
@@ -15,7 +14,8 @@ import org.vaadin.addons.componentfactory.leaflet.layer.map.functions.Executable
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 
 @JsonInclude(Include.NON_NULL)
 @JsonIgnoreProperties(value = { "json" })
@@ -24,14 +24,24 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
     private String json;
     private String uuid;
     private ExecutableFunctions parent;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
 
     protected LeafletObject() {
-        configureObjectMapper(objectMapper);
+        JsonMapper.Builder builder = JsonMapper.builder();
+        configureObjectMapper(builder);
+        this.objectMapper = builder.build();
         this.uuid = UUID.randomUUID().toString();
     }
 
-    protected void configureObjectMapper(final ObjectMapper objectMapper) {
+    /**
+     * Hook for subclasses to customize the Jackson mapper used for serializing
+     * this object. Jackson 3 mappers are immutable, so configuration must be
+     * applied to the {@link JsonMapper.Builder} before the mapper is built.
+     *
+     * @param builder
+     *            the mapper builder to configure
+     */
+    protected void configureObjectMapper(final JsonMapper.Builder builder) {
     }
 
     @Override
@@ -44,7 +54,7 @@ public abstract class LeafletObject implements ExecutableFunctions, Serializable
             try {
                 this.json = objectMapper.writeValueAsString(this);
                 return this.json;
-            } catch (IOException e) {
+            } catch (RuntimeException e) {
                 throw new RuntimeException("Unable to convert Layer into JSON type", e);
             }
         }

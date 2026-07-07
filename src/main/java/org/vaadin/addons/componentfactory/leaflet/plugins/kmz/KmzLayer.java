@@ -10,7 +10,7 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.types.EventTypeRe
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.LeafletEventType;
 
 /**
- * <h3>KMZ file loader for Leaflet Maps</h3>
+ * <h2>KMZ file loader for Leaflet Maps</h2>
  * 
  * Web component: <a href=
  * "https://www.npmjs.com/package/leaflet-kmz">https://www.npmjs.com/package/leaflet-kmz</a><br>

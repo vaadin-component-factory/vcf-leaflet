@@ -29,23 +29,18 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeLabel;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.router.AfterNavigationEvent;
 import com.vaadin.flow.router.AfterNavigationObserver;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
+
 import org.vaadin.addons.componentfactory.leaflet.demo.components.AppMenu;
 import org.vaadin.addons.componentfactory.leaflet.demo.components.AppMenuItem;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.controls.ControlPositionExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.controls.LayersControlExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.controls.RemoveDefaultControlsExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.controls.ScaleControlExample;
-import org.vaadin.addons.componentfactory.leaflet.demo.view.layers.GeoJSONEventsExample;
-import org.vaadin.addons.componentfactory.leaflet.demo.view.layers.GeoJSONFilterExample;
-import org.vaadin.addons.componentfactory.leaflet.demo.view.layers.GeoJSONLayerExample;
-import org.vaadin.addons.componentfactory.leaflet.demo.view.layers.GeoJSONStyleExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.layers.MultipleBaseLayersExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.map.MapConversionMethodsExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.map.MapDarkThemeExample;
@@ -67,14 +62,12 @@ import org.vaadin.addons.componentfactory.leaflet.demo.view.marker.MarkersGroupE
 import org.vaadin.addons.componentfactory.leaflet.demo.view.marker.MarkersRemoveOnClickExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.marker.MarkersSimpleExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.marker.MarkersWithEventsExample;
-import org.vaadin.addons.componentfactory.leaflet.demo.view.mixed.WorldMapFlagsExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.path.FlyToPolygonBoundsExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.path.PathSimpleExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.path.Paths3000Example;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.path.PathsEventPropagationExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.path.PathsStyleExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.path.TypeOfPathsExample;
-import org.vaadin.addons.componentfactory.leaflet.demo.view.plugins.CanvasIconLayerExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.plugins.DynamicMapLayerPluginExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.plugins.FullScreenPluginExample;
 import org.vaadin.addons.componentfactory.leaflet.demo.view.plugins.HeatmapPluginExample;
@@ -84,7 +77,6 @@ import org.vaadin.addons.componentfactory.leaflet.demo.view.plugins.TiledMapLaye
 import org.vaadin.addons.componentfactory.leaflet.demo.view.plugins.VectorBasemapLayerPluginExample;
 
 @CssImport(value = "styles/demo-applayout.css", themeFor = "vaadin-app-layout")
-@Theme(value = Lumo.class, variant = Lumo.LIGHT)
 public class LeafletDemoApp extends AppLayout implements AfterNavigationObserver {
 
 	private static final long serialVersionUID = -9119767347112138141L;
@@ -104,7 +96,7 @@ public class LeafletDemoApp extends AppLayout implements AfterNavigationObserver
 		addToNavbar(image);
 
 		// App title
-		Label appTitle = new Label("Vaadin - Leaflet examples");
+		NativeLabel appTitle = new NativeLabel("Vaadin - Leaflet examples");
 		appTitle.setWidthFull();
 		appTitle.getStyle().set("font-size", "20px");
 		appTitle.getStyle().set("margin-left", "10px");
@@ -139,9 +131,7 @@ public class LeafletDemoApp extends AppLayout implements AfterNavigationObserver
 
 		// Layers examples
 		AppMenuItem.create("Layers", new Icon(VaadinIcon.GRID_SMALL))
-				.addSubMenu(MultipleBaseLayersExample.class).addSubMenu(GeoJSONLayerExample.class)
-				.addSubMenu(GeoJSONFilterExample.class).addSubMenu(GeoJSONStyleExample.class)
-				.addSubMenu(GeoJSONEventsExample.class).addTo(appMenu);
+				.addSubMenu(MultipleBaseLayersExample.class);
 
 		// Paths examples
 		AppMenuItem.create("Paths", new Icon(VaadinIcon.FILL)).addSubMenu(PathSimpleExample.class)
@@ -155,13 +145,11 @@ public class LeafletDemoApp extends AppLayout implements AfterNavigationObserver
 				.addSubMenu(ControlPositionExample.class).addSubMenu(ScaleControlExample.class).addTo(appMenu);
 
 		// Mixins examples
-		AppMenuItem.create("Mixin", new Icon(VaadinIcon.SHIELD)).addSubMenu(WorldMapFlagsExample.class).addTo(appMenu);
 
 		// Plugins examples
 		AppMenuItem.create("Plugins", new Icon(VaadinIcon.PLUG)).addSubMenu(FullScreenPluginExample.class)
         .addSubMenu(HeatmapPluginExample.class)
         .addSubMenu(MarkerClusterPluginExample.class)
-        .addSubMenu(CanvasIconLayerExample.class)
         .addSubMenu(KmzLayerPluginExample.class)
         .addSubMenu(DynamicMapLayerPluginExample.class)
         .addSubMenu(TiledMapLayerPluginExample.class)

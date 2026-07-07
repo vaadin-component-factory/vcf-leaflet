@@ -24,7 +24,7 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 
 /**
- * <h3>Leaflet.heat</h3> A tiny, simple and fast Leaflet heatmap plugin. Uses
+ * <h2>Leaflet.heat</h2> A tiny, simple and fast Leaflet heatmap plugin. Uses
  * <a href="https://github.com/Leaflet/Leaflet.heat">leaflet.heat</a> which uses
  * <a href="https://github.com/mourner/simpleheat">simpleheat</a> under the
  * hood, additionally clustering points into a grid for performance.

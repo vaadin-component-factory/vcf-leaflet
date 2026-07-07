@@ -28,6 +28,7 @@ import com.vaadin.flow.component.DomEvent;
 import com.vaadin.flow.component.EventData;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.DragEventType;
+import org.vaadin.addons.componentfactory.leaflet.types.LatLng;
 
 /**
  * The base event object. All other event objects contain these properties too.
@@ -37,12 +38,16 @@ public class DragEndEvent extends LeafletEvent {
 
   private static final long serialVersionUID = -850212458361911478L;
   private final double distance;
+  private final LatLng latLng;
 
   public DragEndEvent(LeafletMap source, boolean fromClient,
       @EventData("event.detail.target.options.uuid") String layerId,
+      @EventData("event.detail.target.getLatLng().lat") double lat,
+      @EventData("event.detail.target.getLatLng().lng") double lng,
       @EventData("event.detail.distance") double distance) {
     super(source, fromClient, layerId, DragEventType.dragend);
     this.distance = distance;
+    this.latLng = new LatLng(lat, lng);
   }
 
   /**
@@ -54,9 +59,12 @@ public class DragEndEvent extends LeafletEvent {
     return distance;
   }
 
+  public LatLng getLatLng() {
+    return latLng;
+  }
   @Override
   public String toString() {
-    return "DragEndEvent [type=" + super.getType() + ",distance=" + distance + "]";
+    return "DragEndEvent [type=" + super.getType() + ",distance=" + distance +
+    ", latLng=" + latLng + "]";
   }
-
 }

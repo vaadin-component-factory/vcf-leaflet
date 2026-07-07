@@ -4,7 +4,7 @@
 
 	<groupId>org.vaadin.addons.componentfactory</groupId>
 	<artifactId>vcf-leaflet</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>3.0.0</version>
 	<name>Leaflet</name>
 	<description>Integration of Leaflet Map for Vaadin Flow</description>
 	<scm>
@@ -13,20 +13,18 @@
 		<developerConnection>scm:git:git@https://github.com/vaadin-component-factory/vcf-leaflet.git</developerConnection>
 	</scm>
 	<properties>
-		<vaadin.version>14.10.11</vaadin.version>
+		<vaadin.version>25.2.1</vaadin.version>
 
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<drivers.dir>${project.basedir}/drivers</drivers.dir>
 
-		<jetty.version>9.4.36.v20210114</jetty.version>
-		<webapp-runner.version>9.0.31.0</webapp-runner.version>
+		<jetty.version>12.1.2</jetty.version>
 
-		<maven-war-plugin.version>3.2.3</maven-war-plugin.version>
-		<heroku-maven-plugin>3.0.1</heroku-maven-plugin>
+		<maven-war-plugin.version>3.4.0</maven-war-plugin.version>
 	</properties>
 	<organization>
 		<name>Vaadin Ltd</name>
@@ -102,41 +100,6 @@
 			<groupId>com.vaadin</groupId>
 			<!-- Replace artifactId with vaadin-core to use only free components -->
 			<artifactId>vaadin</artifactId>
-			<exclusions>
-				<!-- Webjars are only needed when running in Vaadin 13 compatibility 
-					mode in V14. Your add-on can support npm in the same version mode and V13 
-					compatiblity mode at the same time, or with separate versions. Any V13 version 
-					should work with the compatibility mode in V14. -->
-				<exclusion>
-					<groupId>com.vaadin.webjar</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.insites</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.polymer</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.polymerelements</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.vaadin</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.webjars.bowergithub.webcomponents</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>de.grundid.opendatalab</groupId>
-			<artifactId>geojson-jackson</artifactId>
-			<version>1.13</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -149,14 +112,15 @@
 			<version>2.13.2</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
+
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
@@ -164,9 +128,12 @@
 		    <scope>provided</scope>
 		</dependency>
 
+		<!-- Provides dev mode tooling (Vite dev server, dev tools, Copilot).
+		     No longer a transitive dependency of vaadin/vaadin-core in Vaadin 25.
+		     Only needed to run the demo in development mode. -->
 		<dependency>
 			<groupId>com.vaadin</groupId>
-			<artifactId>vaadin-testbench</artifactId>
+			<artifactId>vaadin-dev</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -177,23 +144,6 @@
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.1.0</version>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>node_modules</directory>
-						</fileset>
-						<fileset>
-							<directory>${basedir}</directory>
-							<includes>
-								<include>package.json</include>
-								<include>package-lock.json</include>
-								<include>pnpm-lock.yaml</include>
-								<include>webpack.config.js</include>
-								<include>webpack.generated.js</include>
-							</includes>
-						</fileset>
-					</filesets>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -225,11 +175,18 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
+				<groupId>org.eclipse.jetty.ee11</groupId>
+				<artifactId>jetty-ee11-maven-plugin</artifactId>
 				<version>${jetty.version}</version>
 				<configuration>
-					<scanIntervalSeconds>3</scanIntervalSeconds>
+					<scan>2</scan>
+					<httpConnector>
+					<!--host>localhost</host-->
+					<port>9080</port>
+				</httpConnector>
+					<systemProperties>
+						<vaadin.frontend.hotdeploy>true</vaadin.frontend.hotdeploy>
+					</systemProperties>
 					<!-- Use test scope because the UI/demo classes are in the test package. -->
 					<useTestScope>true</useTestScope>
 					<supportedPackagings>
@@ -354,11 +311,11 @@
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-maven-plugin</artifactId>
+						<groupId>org.eclipse.jetty.ee11</groupId>
+						<artifactId>jetty-ee11-maven-plugin</artifactId>
 						<version>${jetty.version}</version>
 						<configuration>
-							<scanIntervalSeconds>0</scanIntervalSeconds>
+							<scan>0</scan>
 							<supportedPackagings>
 								<supportedPackaging>jar</supportedPackaging>
 							</supportedPackagings>
@@ -531,84 +488,5 @@
 				</plugins>
 			</build>
 		</profile>
-
-		<!-- Heroku profile -->
-		<profile>
-			<id>heroku</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.github.eirslett</groupId>
-						<artifactId>frontend-maven-plugin</artifactId>
-						<version>1.9.1</version>
-						<executions>
-							<execution>
-								<id>install node and npm</id>
-								<goals>
-									<goal>install-node-and-npm</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<nodeVersion>v12.16.1</nodeVersion>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>copy-webapp-runner</id>
-								<phase>package</phase>
-								<goals>
-									<goal>copy</goal>
-								</goals>
-								<configuration>
-									<artifactItems>
-										<artifactItem>
-											<groupId>com.heroku</groupId>
-											<artifactId>webapp-runner</artifactId>
-											<version>${webapp-runner.version}</version>
-											<destFileName>webapp-runner.jar</destFileName>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>heroku-deploy</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.heroku.sdk</groupId>
-						<artifactId>heroku-maven-plugin</artifactId>
-						<version>${heroku-maven-plugin}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>deploy-war</goal>
-								</goals>
-								<phase>install</phase>
-							</execution>
-						</executions>
-						<configuration>
-							<appName>${project.artifactId}</appName>
-							<warFile>${project.build.directory}/leaflet4vaadin-demo.war</warFile>
-							<logProgress>true</logProgress>
-							<includeTarget>false</includeTarget>
-							<includes>
-								<include>${project.build.directory}/leaflet4vaadin-demo.war</include>
-							</includes>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
 	</profiles>
 </project>

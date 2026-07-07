@@ -62,3 +62,28 @@
   background-color: var(--leaflet-bg-color);
   color: var(--leaflet-color);
 }
+
+.leaflet-map-pane {
+  z-index: 0;
+}
+.leaflet-tile-pane {
+  z-index: 1;
+}
+.leaflet-overlay-pane {
+  z-index: 2;
+}
+.leaflet-shadow-pane {
+  z-index: 3;
+}
+.leaflet-marker-pane {
+  z-index: 4;
+}
+.leaflet-tooltip-pane {
+  z-index: 5;
+}
+.leaflet-popup-pane {
+  z-index: 6;
+}
+.leaflet-top, .leaflet-bottom {
+  z-index: 7;
+}

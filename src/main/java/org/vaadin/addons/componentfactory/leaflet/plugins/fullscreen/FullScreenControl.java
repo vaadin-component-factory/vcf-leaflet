@@ -9,7 +9,7 @@ import org.vaadin.addons.componentfactory.leaflet.layer.events.types.EventTypeRe
 import org.vaadin.addons.componentfactory.leaflet.layer.events.types.LeafletEventType;
 
 /**
- * <h3>Leaflet.Control.FullScreen</h3>
+ * <h2>Leaflet.Control.FullScreen</h2>
  * 
  * Web component: <a href=
  * "https://www.npmjs.com/package/leaflet.fullscreen">https://www.npmjs.com/package/leaflet.fullscreen</a><br>

@@ -23,7 +23,6 @@ import com.vaadin.flow.component.dependency.JsModule;
 import lombok.Getter;
 import org.vaadin.addons.componentfactory.leaflet.annotations.LeafletArgument;
 
-@JsModule("./esri-dynamic-map.js")
 public class DynamicMapLayer extends EsriLeafletLayer {
 
   private static final long serialVersionUID = 1L;

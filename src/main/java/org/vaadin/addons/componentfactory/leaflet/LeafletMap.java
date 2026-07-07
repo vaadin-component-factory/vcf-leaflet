@@ -24,9 +24,14 @@
  */
 package org.vaadin.addons.componentfactory.leaflet;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.ObjectNode;
 import org.vaadin.addons.componentfactory.leaflet.controls.LeafletControl;
 import org.vaadin.addons.componentfactory.leaflet.layer.Identifiable;
 import org.vaadin.addons.componentfactory.leaflet.layer.Layer;
@@ -104,13 +109,8 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.page.PendingJavaScriptResult;
 import com.vaadin.flow.component.page.PendingJavaScriptResult.JavaScriptException;
-import com.vaadin.flow.internal.JsonSerializer;
+import com.vaadin.flow.internal.JacksonUtils;
 import com.vaadin.flow.shared.Registration;
-import elemental.json.Json;
-import elemental.json.JsonArray;
-import elemental.json.JsonObject;
-import elemental.json.JsonType;
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -174,15 +174,26 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
     private LeafletModel getModel() {
         return new LeafletModel() {
 
-            ObjectMapper objectMapper = new ObjectMapper();            
-                        
+            // Deserialize option beans back from the client. The option types
+            // (e.g. DefaultMapOptions) expose their id through a getter over a
+            // private final field with no setter, so Jackson must be allowed to
+            // populate final fields directly - otherwise a fresh random uuid
+            // would be generated on every read and layer targeting would break.
+            // Jackson 2 enabled this by default; Jackson 3 requires it explicitly.
+            ObjectMapper objectMapper = JsonMapper.builder()
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                    .configure(MapperFeature.ALLOW_FINAL_FIELDS_AS_MUTATORS, true)
+                    .configure(MapperFeature.INFER_PROPERTY_MUTATORS, true)
+                    .changeDefaultVisibility(
+                            vc -> vc.withVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY))
+                    .build();
+
             @Override
             public MapOptions getMapOptions() {
                 try {
                     String mapOptionsString = getElement().getProperty("mapOptions");
-                    objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
                     return objectMapper.readValue(mapOptionsString, optionsClass);
-                } catch (JsonProcessingException e) {
+                } catch (RuntimeException e) {
                     logger.error("Error retrieving map options", e);
                     return null;
                 }
@@ -190,9 +201,9 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
 
             @Override
             public void setMapOptions(MapOptions mapOptions) {
-                try {                    
+                try {
                     getElement().setProperty("mapOptions", objectMapper.writeValueAsString(mapOptions));
-                } catch (JsonProcessingException e) {
+                } catch (RuntimeException e) {
                     logger.error("Error serializing map options", e);
                 }
             }
@@ -216,14 +227,14 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
     @Override
     protected void onAttach(AttachEvent attachEvent) {
       super.onAttach(attachEvent);
-        // set events to leaflet 
-        JsonArray jsonArray = Json.createArray();
+        // set events to leaflet
+        ArrayNode jsonArray = JacksonUtils.createArrayNode();
         for (int i = 0; i < events.size(); i++) {
-          JsonObject js = Json.createObject();
+          ObjectNode js = JacksonUtils.createObjectNode();
           js.put("leafletEvent", events.get(i).name());
-          jsonArray.set(i, js);
-        }   
-        this.getElement().setPropertyJson("events", jsonArray);        
+          jsonArray.add(js);
+        }
+        this.getElement().setPropertyJson("events", jsonArray);
     }
 
     /**
@@ -340,7 +351,7 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
     public void executeJs(Identifiable target, String functionName, Serializable... arguments) {
         logger.info("Execute leaflet function: {}", functionName);
         LeafletOperation leafletOperation = new LeafletOperation(target, functionName, arguments);
-        getElement().callJsFunction("callLeafletFunction", JsonSerializer.toJson(leafletOperation));
+        getElement().callJsFunction("callLeafletFunction", JacksonUtils.beanToJson(leafletOperation));
     }
 
     @Override
@@ -348,27 +359,12 @@ public final class LeafletMap extends Component implements MapModifyStateFunctio
         if (ready) {
             logger.info("Call leaflet function: {}", functionName);
             LeafletOperation leafletOperation = new LeafletOperation(target, functionName, arguments);
-            PendingJavaScriptResult javascriptResult = getElement().callJsFunction("callLeafletFunction", JsonSerializer.toJson(leafletOperation));
+            PendingJavaScriptResult javascriptResult = getElement().callJsFunction("callLeafletFunction", JacksonUtils.beanToJson(leafletOperation));
 
             CompletableFuture<T> completableFuture = new CompletableFuture<>();
-            javascriptResult.then(value -> {
-                try {
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    T result;
-                    // Detect object type for value to be handled correctly (ex: getZoom)
-                    JsonType type = value.getType();
-                    if (type.equals(JsonType.OBJECT)) {
-                        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-                        result = objectMapper.readValue(value.toString(), resultType);
-                    }
-                    else {
-                        result = objectMapper.readValue(value.asString(), resultType);
-                    }
-                    completableFuture.complete(result);
-                } catch (IOException e) {
-                    throw new RuntimeException("Failed to parse javascript result", e);
-                }
-            }, errorValue -> {
+            // Jackson deserializes the client-side JSON result into the requested
+            // type, correctly handling both object and primitive results (ex: getZoom)
+            javascriptResult.then(resultType, completableFuture::complete, errorValue -> {
                 JavaScriptException exception = new JavaScriptException(errorValue);
                 completableFuture.completeExceptionally(exception);
             });

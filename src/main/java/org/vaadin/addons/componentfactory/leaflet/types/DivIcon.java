@@ -9,7 +9,7 @@ package org.vaadin.addons.componentfactory.leaflet.types;
  * white square with a shadow.
  * 
  * 
- * <h3>Usage example</h3>
+ * <h2>Usage example</h2>
  * 
  * <pre>
  * Marker marker = new Marker(new LatLng(47.1, 18.4));

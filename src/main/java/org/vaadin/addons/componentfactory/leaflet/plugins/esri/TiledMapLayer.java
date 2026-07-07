@@ -29,7 +29,6 @@ import org.vaadin.addons.componentfactory.leaflet.annotations.LeafletArgument;
  * <a href="https://developers.arcgis.com/esri-leaflet/api-reference/layers/tiled-map-layer/">Tiled
  * map layer</a> plugin.  Access tiles from ArcGIS Online and ArcGIS Server.
  */
-@JsModule("./esri-tiled-map-layer.js")
 @AllArgsConstructor
 public class TiledMapLayer extends EsriLeafletLayer {
 

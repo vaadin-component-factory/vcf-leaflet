@@ -19,16 +19,13 @@
 package org.vaadin.addons.componentfactory.leaflet.i18n;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 
-import com.vaadin.flow.internal.JsonSerializer;
+import com.vaadin.flow.internal.JacksonUtils;
 
-import org.apache.commons.io.IOUtils;
-
-import elemental.json.JsonFactory;
-import elemental.json.JsonValue;
-import elemental.json.impl.JreJsonFactory;
+import tools.jackson.databind.JsonNode;
 
 public class LeafletI18n implements Serializable {
 
@@ -36,13 +33,12 @@ public class LeafletI18n implements Serializable {
      *
      */
     private static final long serialVersionUID = 8240099358732023102L;
-    private static final JsonValue DEFAULT_I18N;
+    private static final JsonNode DEFAULT_I18N;
 
     static {
-        try {
-            final JsonFactory JSON_FACTORY = new JreJsonFactory();
-            DEFAULT_I18N = JSON_FACTORY.parse(
-                    IOUtils.toString(LeafletI18n.class.getResource("leaflet-i18n.json"), StandardCharsets.UTF_8));
+        try (InputStream in = LeafletI18n.class.getResourceAsStream("leaflet-i18n.json")) {
+            DEFAULT_I18N = JacksonUtils
+                    .readTree(new String(in.readAllBytes(), StandardCharsets.UTF_8));
         } catch (IOException e) {
             throw new IllegalStateException("Cannot find the default i18n configuration");
         }
@@ -52,7 +48,7 @@ public class LeafletI18n implements Serializable {
      * @return a new instance with the default messages
      */
     public static LeafletI18n createDefault() {
-        return JsonSerializer.toObject(LeafletI18n.class, DEFAULT_I18N);
+        return JacksonUtils.readValue(DEFAULT_I18N, LeafletI18n.class);
     }
 
 }

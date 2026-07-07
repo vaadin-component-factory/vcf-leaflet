@@ -12,7 +12,7 @@ import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dependency.NpmPackage;
 
 /**
- * <h3>Leaflet.markercluster</h3>
+ * <h2>Leaflet.markercluster</h2>
  * 
  * Web component: <a href=
  * "https://www.npmjs.com/package/leaflet.markercluster">https://www.npmjs.com/package/leaflet.markercluster</a><br>

@@ -17,8 +17,6 @@ package org.vaadin.addons.componentfactory.leaflet.types;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -131,7 +129,7 @@ public class Bounds implements BasicType {
     
     @Override
     public String toString() {
-        return ReflectionToStringBuilder.toString(this);
+        return getClass().getSimpleName() + "[min=" + min + ",max=" + max + "]";
     }
 
 }

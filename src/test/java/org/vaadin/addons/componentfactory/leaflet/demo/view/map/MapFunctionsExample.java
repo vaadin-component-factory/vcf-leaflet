@@ -14,7 +14,7 @@
 
 package org.vaadin.addons.componentfactory.leaflet.demo.view.map;
 
-import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.html.NativeLabel;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import org.vaadin.addons.componentfactory.leaflet.LeafletMap;
@@ -32,7 +32,7 @@ public class MapFunctionsExample extends ExampleContainer {
     @Override
     protected void initDemo() {
 
-        Label eventLabel = new Label("Click on map to fly to a coordinate or right-click to fit World");
+        NativeLabel eventLabel = new NativeLabel("Click on map to fly to a coordinate or right-click to fit World");
         eventLabel.getStyle().set("font-weight", "bold");
 
         final MapOptions options = new DefaultMapOptions();

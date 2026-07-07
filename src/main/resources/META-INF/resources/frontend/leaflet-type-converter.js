@@ -28,11 +28,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
-import * as L from "leaflet/dist/leaflet-src.js";
-
 export class LeafletTypeConverter {
-  constructor() {
+
+  constructor(L) {
+    this.L = L;
     this.basicTypes = [
       "Point",
       "Bounds",
@@ -44,7 +43,6 @@ export class LeafletTypeConverter {
   }
 
   toLeafletLayer(layer, map) {
-    //console.log("LeafletTypeConverter - toLeafletLayer() leafletType", {leafletType: layer.leafletType});
     let leafletLayer;
 
     if (map.hasLayer(layer.uuid)) {
@@ -60,7 +58,7 @@ export class LeafletTypeConverter {
     }
 
     if (layer.leafletType === "GeoJSON") {
-      leafletLayer = L.geoJSON(null, layer);
+      leafletLayer = this.L.geoJSON(null, layer);
       leafletLayer._layers = layer.layers;
     } else {
       let factoryFn = this.getLayerFactoryFn(layer.leafletType);
@@ -85,7 +83,7 @@ export class LeafletTypeConverter {
         map.registerEventListener(leafletLayer, event)
       );
     }
-    console.log("LeafletTypeConverter - toLeafletLayer() result", leafletLayer);
+    // console.log("LeafletTypeConverter - toLeafletLayer() result", leafletLayer);
     return leafletLayer;
   }
 
@@ -94,7 +92,7 @@ export class LeafletTypeConverter {
   }
 
   getControlFactoryFn(leafletType) {
-    return L.control[leafletType];
+    return this.L.control[leafletType];
   }
 
   toLeafletControl(control, mapTemplate) {
@@ -116,10 +114,10 @@ export class LeafletTypeConverter {
         leafletControl = controlFn(control);
       }
       mapTemplate.map._controls[control.uuid] = leafletControl;
-      console.log(
+      /*console.log(
         "LeafletTypeConverter - toLeafletControl() result",
         leafletControl
-      );
+      );*/
     }
     return leafletControl;
   }
@@ -195,58 +193,58 @@ export class LeafletTypeConverter {
     iconOptions.iconAnchor = iconOptions.iconAnchor ? [iconOptions.iconAnchor.x, iconOptions.iconAnchor.y] : null;
     iconOptions.iconSize = iconOptions.iconSize ? [iconOptions.iconSize.x, iconOptions.iconSize.y] : null;
     iconOptions.shadowSize = iconOptions.shadowSize ? [iconOptions.shadowSize.x, iconOptions.shadowSize.y] : null;
-    return L.icon(iconOptions);
+    return this.L.icon(iconOptions);
   }
 
   /**
    * Convert the given JsonObject to Leaflet DivIcon
    */
   toDivIcon(divIcon) {
-    return L.divIcon(divIcon);
+    return this.L.divIcon(divIcon);
   }
 
   /**
    * Convert the given JsonObject to Leaflet Point
    */
   toPoint(point) {
-    return point ? L.point(point.x, point.y) : point;
+    return point ? this.L.point(point.x, point.y) : point;
   }
 
   /**
    * Convert the given JsonObject to Leaflet LatLng
    */
   toLatLng(latLng) {
-    return latLng ? L.latLng(latLng.lat, latLng.lng, latLng.altitude) : latLng;
+    return latLng ? this.L.latLng(latLng.lat, latLng.lng, latLng.altitude) : latLng;
   }
 
   /**
    * Convert the given JsonObject to Leaflet Bounds
    */
   toBounds(bounds) {
-    let corner1 = L.point(bounds.topLeft.x, bounds.topLeft.y);
-    let corner2 = L.point(bounds.bottomRight.x, bounds.bottomRight.y);
-    return L.bounds(corner1, corner2);
+    let corner1 = this.L.point(bounds.topLeft.x, bounds.topLeft.y);
+    let corner2 = this.L.point(bounds.bottomRight.x, bounds.bottomRight.y);
+    return this.L.bounds(corner1, corner2);
   }
 
   /**
    * Convert the given JsonObject to Leaflet LatLngBounds
    */
   toLatLngBounds(bounds) {
-    let corner1 = L.latLng(bounds._northEast);
-    let corner2 = L.latLng(bounds._southWest);
-    return L.latLngBounds(corner1, corner2);
+    let corner1 = this.L.latLng(bounds._northEast);
+    let corner2 = this.L.latLng(bounds._southWest);
+    return this.L.latLngBounds(corner1, corner2);
   }
 
   _applyOptions(layer, options) {
     if (options.tooltip) {
-      let leafletTooltip = L.tooltip(options.tooltip).setContent(
+      let leafletTooltip = this.L.tooltip(options.tooltip).setContent(
         options.tooltip.content
       );
       //console.log("LeafletConverter - binding tooltip to layer",leafletTooltip);
       layer.bindTooltip(leafletTooltip);
     }
     if (options.popup) {
-      let leafletPopup = L.popup(options.popup).setContent(
+      let leafletPopup = this.L.popup(options.popup).setContent(
         options.popup.content
       );
       //console.log("LeafletConverter - binding popup to layer", leafletPopup);
